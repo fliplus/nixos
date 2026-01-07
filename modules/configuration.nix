@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.core = { pkgs, host, ... }:
+  flake.nixosModules.core = { inputs, pkgs, host, ... }:
 
   {
     boot.loader = {
@@ -32,13 +32,12 @@
       pulse.enable = true;
     };
 
-    programs.firefox.enable = true;
-
     environment.systemPackages = with pkgs; [
       _1password-gui
       ghostty
       hyprlauncher
       neovim
+      inputs.zen-browser.packages.${system}.twilight
     ];
 
     programs.git = {
@@ -71,9 +70,9 @@
     };
 
     preferences.persist.home.directories = [
-      ".config/hypr"
       ".config/1Password"
-      ".mozilla"
+      ".config/hypr"
+      ".zen"
       "nixos"
     ];
 
