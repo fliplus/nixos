@@ -34,6 +34,7 @@
 
     environment.systemPackages = with pkgs; [
       _1password-gui
+      equibop
       ghostty
       hyprlauncher
       neovim
@@ -71,6 +72,7 @@
 
     preferences.persist.home.directories = [
       ".config/1Password"
+      ".config/equibop"
       ".config/hypr"
       ".zen"
       "nixos"
