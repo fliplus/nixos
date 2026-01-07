@@ -7,7 +7,7 @@ let
       config.flake.nixosModules."host-${host}"
 
       inputs.disko.nixosModules.disko
-      config.flake.diskoModules."disko-${host}"
+      config.flake.nixosModules."disko-${host}"
       
       inputs.impermanence.nixosModules.impermanence
       config.flake.nixosModules.core
@@ -16,6 +16,7 @@ let
 in
 {
   flake.nixosConfigurations = {
+    onemore = mkNixos "onemore";
     framework = mkNixos "framework";
   };
 }

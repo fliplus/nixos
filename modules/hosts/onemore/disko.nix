@@ -1,6 +1,6 @@
 # https://github.com/saygo-png/nixos/blob/99aa51a11f9d9af04e99246202f6e7a3ccc0cf3b/hosts/pc/disko-config.nix
 {
-  flake.nixosModules.disko-framework = {
+  flake.nixosModules.disko-onemore = {
     disko.devices = {
       disk = {
         main = {
