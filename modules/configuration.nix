@@ -38,8 +38,12 @@
       ghostty
       hyprlauncher
       neovim
+      pulsemixer
+      prismlauncher
       inputs.zen-browser.packages.${system}.twilight
     ];
+
+    programs.steam.enable = true;
 
     programs.git = {
       enable = true;
@@ -74,8 +78,14 @@
       ".config/1Password"
       ".config/equibop"
       ".config/hypr"
+      ".local/share/PrismLauncher"
+      ".local/share/Steam"
       ".zen"
       "nixos"
+    ];
+
+    preferences.persist.home.cache.directories = [
+      ".local/state/wireplumber"
     ];
 
     system.stateVersion = "25.11";

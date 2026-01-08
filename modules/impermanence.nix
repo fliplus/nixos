@@ -9,7 +9,6 @@
     '';
 
     fileSystems."/persist".neededForBoot = true;
-
     environment.persistence."/persist" = {
       hideMounts = true;
 
@@ -19,6 +18,19 @@
       users.${user} = {
         directories = persist.home.directories;
         files = persist.home.files;
+      };
+    };
+
+    fileSystems."/cache".neededForBoot = true;
+    environment.persistence."/cache" = {
+      hideMounts = true;
+
+      directories = persist.root.cache.directories;
+      files = persist.root.cache.files;
+
+      users.${user} = {
+        directories = persist.home.cache.directories;
+        files = persist.home.cache.files;
       };
     };
   };
