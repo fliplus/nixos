@@ -2,7 +2,7 @@
   flake.nixosModules.core = { lib, ... }:
   let
     inherit (lib) any assertMsg hasPrefix mkOption;
-    inherit (lib.types) listOf str;
+    inherit (lib.types) int listOf nonEmptyListOf str submodule;
 
     assertNoHomeDirs =
       paths:
@@ -14,59 +14,88 @@
       persist = {
         root = {
           directories = mkOption {
-            type = listOf str;
-            default = [ ];
-            apply = assertNoHomeDirs;
             description = "Directories to persist in root filesystem";
+            type = listOf str;
+            apply = assertNoHomeDirs;
+            default = [ ];
           };
           files = mkOption {
-            type = listOf str;
-            default = [ ];
-            apply = assertNoHomeDirs;
             description = "Files to persist in root filesystem";
+            type = listOf str;
+            apply = assertNoHomeDirs;
+            default = [ ];
           };
 
           cache = {
             directories = mkOption {
-              type = listOf str;
-              default = [ ];
-              apply = assertNoHomeDirs;
               description = "Directories to persist, but not to snapshot";
+              type = listOf str;
+              apply = assertNoHomeDirs;
+              default = [ ];
             };
             files = mkOption {
-              type = listOf str;
-              default = [ ];
-              apply = assertNoHomeDirs;
               description = "Files to persist, but not to snapshot";
+              type = listOf str;
+              apply = assertNoHomeDirs;
+              default = [ ];
             };
           };
         };
 
         home = {
           directories = mkOption {
+            description = "Directories to persist in home directory";
             type = listOf str;
             default = [ ];
-            description = "Directories to persist in home directory";
           };
           files = mkOption {
+            description = "Files to persist in home directory";
             type = listOf str;
             default = [ ];
-            description = "Files to persist in home directory";
           };
 
           cache = {
             directories = mkOption {
+              description = "Directories to persist, but not to snapshot";
               type = listOf str;
               default = [ ];
-              description = "Directories to persist, but not to snapshot";
             };
             files = mkOption {
+              description = "Files to persist, but not to snapshot";
               type = listOf str;
               default = [ ];
-              description = "Files to persist, but not to snapshot";
             };
           };
         };
+      };
+
+      monitors = mkOption {
+        description = "Configuration for monitors";
+        type = nonEmptyListOf (submodule {
+          options = {
+            name = mkOption {
+              description = "Name of the display";
+              type = str;
+            };
+            resolution = mkOption {
+              description = "Resolution of the display";
+              type = str;
+            };
+            refreshRate = mkOption {
+              description = "Refresh rate of the display";
+              type = int;
+            };
+            position = mkOption {
+              description = "Position of the display";
+              type = str;
+            };
+            workspaces = mkOption {
+              description = "List of workspace numbers";
+              type = listOf int;
+            };
+          };
+        });
+        default = [ ];
       };
     };
   };
