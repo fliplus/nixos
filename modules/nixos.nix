@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ inputs, config, ... }:
 let
   user = "flip";
   mkNixos = host: inputs.nixpkgs.lib.nixosSystem {
@@ -10,6 +10,8 @@ let
       config.flake.nixosModules."disko-${host}"
       
       inputs.impermanence.nixosModules.impermanence
+      inputs.hjem.nixosModules.hjem
+
       config.flake.nixosModules.core
     ];
   };
