@@ -33,5 +33,7 @@
         files = persist.home.cache.files;
       };
     };
+
+    security.sudo.extraConfig = "Defaults lecture=never";
   };
 }

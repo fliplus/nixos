@@ -17,8 +17,10 @@
 
     networking.hostName = host;
 
-    networking.networkmanager.enable = true;
-    networking.networkmanager.insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
+    networking.networkmanager = {
+      enable = true;
+      insertNameservers = [ "1.1.1.1" ];
+    };
 
     time.timeZone = "Europe/Lisbon";
 
@@ -39,7 +41,9 @@
       hyprlauncher
       neovim
       pulsemixer
-      prismlauncher
+      (prismlauncher.override {
+        jdks = [ javaPackages.compiler.temurin-bin.jdk-25 ];
+      })
       inputs.zen-browser.packages.${system}.twilight
     ];
 

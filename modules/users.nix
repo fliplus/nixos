@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.core = { config, user, ... }:
+  flake.nixosModules.core = { config, pkgs, user, ... }:
 
   {
     users = {
@@ -18,6 +18,8 @@
           hashedPasswordFile = "/persist/password";
 
           extraGroups = [ "wheel" ];
+
+          shell = pkgs.fish;
         };
       };
     };
