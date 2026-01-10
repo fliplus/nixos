@@ -19,7 +19,6 @@
     };
 
     environment.systemPackages = with pkgs; [
-      _1password-gui
       equibop
       ghostty
       hyprlauncher
@@ -30,6 +29,17 @@
       })
       inputs.zen-browser.packages.${system}.twilight
     ];
+
+    programs._1password-gui.enable = true;
+
+    environment.etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          zen
+        '';
+        mode = "0755";
+      };
+    };
 
     programs.steam.enable = true;
 
