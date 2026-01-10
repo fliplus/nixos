@@ -8,9 +8,9 @@
       enable = true;
 
       settings = {
-        monitor = (lib.forEach config.preferences.monitors (monitor:
+        monitor = lib.forEach config.preferences.monitors (monitor:
           "${monitor.name}, ${monitor.resolution}@${toString monitor.refreshRate}, ${monitor.position}, 1"
-        ));
+        );
 
         general = {
           gaps_in = 5;
