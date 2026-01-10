@@ -102,7 +102,7 @@
         ] ++ builtins.concatLists ( builtins.genList (i:
           let
             bind = toString (i + 1 - ((i + 1) / 10) * 10);
-	    workspace = toString (i + 1);
+            workspace = toString (i + 1);
           in [
             "$mod, ${bind}, workspace, ${workspace}"
             "$mod SHIFT, ${bind}, movetoworkspace, ${workspace}"
@@ -114,7 +114,7 @@
           "$mod, mouse:273, resizewindow"
         ];
 
-	workspace = lib.optionals (lib.length config.preferences.monitors > 1) (builtins.concatMap (monitor:
+        workspace = lib.optionals (lib.length config.preferences.monitors > 1) (builtins.concatMap (monitor:
           builtins.map (workspace:"${toString workspace}, monitor:${monitor.name}") monitor.workspaces
         ) config.preferences.monitors);
       };

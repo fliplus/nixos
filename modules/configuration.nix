@@ -65,17 +65,11 @@
         IdentityAgent ~/.1password/agent.sock
     '';
 
-    preferences.persist.root = {
-      directories = [
-        "/var/lib/bluetooth"
-        "/var/lib/nixos"
-        "/etc/NetworkManager/system-connections"
-      ];
-
-      files = [
-        "/etc/machine-id"
-      ];
-    };
+    preferences.persist.root.directories = [
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/etc/NetworkManager/system-connections"
+    ];
 
     preferences.persist.home.directories = [
       ".config/1Password"
@@ -83,12 +77,9 @@
       ".config/hypr"
       ".local/share/PrismLauncher"
       ".local/share/Steam"
+      ".local/state/wireplumber"
       ".zen"
       "nixos"
-    ];
-
-    preferences.persist.home.cache.directories = [
-      ".local/state/wireplumber"
     ];
 
     system.stateVersion = "25.11";
