@@ -1,18 +1,23 @@
 {
-  flake.nixosModules.core = { inputs, config, lib, user, ... }:
+  flake.nixosModules.core = { inputs, config, lib, pkgs, user, ... }:
 
   {
     programs.hyprland.enable = true;
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+    environment.systemPackages = with pkgs; [
+      swww
+    ];
+
     hjem.users.${user}.rum.programs.hyprland = {
       enable = true;
 
       settings = {
-        monitor = lib.forEach config.preferences.monitors (monitor:
-          "${monitor.name}, ${monitor.resolution}@${toString monitor.refreshRate}, ${monitor.position}, auto"
-        );
+        exec-once = [
+	  "swww-daemon"
+          "1password --silent"
+	];
 
         general = {
           gaps_in = 5;
@@ -121,7 +126,13 @@
         workspace = lib.optionals (lib.length config.preferences.monitors > 1) (builtins.concatMap (monitor:
           builtins.map (workspace:"${toString workspace}, monitor:${monitor.name}") monitor.workspaces
         ) config.preferences.monitors);
+
+        monitor = lib.forEach config.preferences.monitors (monitor:
+          "${monitor.name}, ${monitor.resolution}@${toString monitor.refreshRate}, ${monitor.position}, auto"
+        );
       };
     };
+
+    preferences.persist.home.directories = [ ".cache/swww" ];
   };
 }
