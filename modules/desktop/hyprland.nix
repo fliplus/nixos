@@ -4,6 +4,8 @@
   {
     programs.hyprland.enable = true;
 
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     hjem.users.${user}.rum.programs.hyprland = {
       enable = true;
 

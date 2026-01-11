@@ -10,7 +10,6 @@ let
       config.flake.nixosModules."disko-${host}"
       
       inputs.impermanence.nixosModules.impermanence
-      inputs.hjem.nixosModules.hjem
 
       config.flake.nixosModules.core
     ];

@@ -64,11 +64,15 @@
         IdentityAgent ~/.1password/agent.sock
     '';
 
-    preferences.persist.root.directories = [
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/etc/NetworkManager/system-connections"
-    ];
+    preferences.persist.root = {
+      directories = [
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/etc/NetworkManager/system-connections"
+      ];
+
+      files = [ "/etc/machine-id" ];
+    };
 
     preferences.persist.home.directories = [
       ".config/1Password"

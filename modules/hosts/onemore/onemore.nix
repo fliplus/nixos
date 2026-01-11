@@ -17,9 +17,7 @@
       }
     ];
 
-    boot.kernelModules = [
-      "amdgpu"
-    ];
+    boot.kernelModules = [ "amdgpu" ];
 
     networking.hostId = "8425e349";
   };
