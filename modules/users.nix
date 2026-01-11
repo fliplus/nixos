@@ -23,5 +23,11 @@
         };
       };
     };
+
+    preferences.persist.home.directories = [
+      "Desktop"
+      "dev"
+      "Downloads"
+    ];
   };
 }
