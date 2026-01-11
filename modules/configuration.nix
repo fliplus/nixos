@@ -28,10 +28,7 @@
       hyprlauncher
       neovim
       pulsemixer
-      (prismlauncher.override {
-        jdks = [ javaPackages.compiler.temurin-bin.jdk-25 ];
-      })
-      inputs.zen-browser.packages.${system}.twilight
+      inputs.zen-browser.packages.${stdenv.hostPlatform.system}.twilight
     ];
 
     programs._1password-gui.enable = true;
@@ -78,7 +75,6 @@
       ".config/1Password"
       ".config/equibop"
       ".config/hypr"
-      ".local/share/PrismLauncher"
       ".local/share/Steam"
       ".local/state/wireplumber"
       ".zen"
