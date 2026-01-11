@@ -9,7 +9,7 @@
 
       settings = {
         monitor = lib.forEach config.preferences.monitors (monitor:
-          "${monitor.name}, ${monitor.resolution}@${toString monitor.refreshRate}, ${monitor.position}, 1"
+          "${monitor.name}, ${monitor.resolution}@${toString monitor.refreshRate}, ${monitor.position}, auto"
         );
 
         general = {
