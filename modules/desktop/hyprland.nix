@@ -76,6 +76,8 @@
           ];
         };
 
+        xwayland.force_zero_scaling = true;
+
         "$mod" = "SUPER";
 
         bind = [

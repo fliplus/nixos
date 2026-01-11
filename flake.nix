@@ -25,6 +25,8 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
