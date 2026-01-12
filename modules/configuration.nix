@@ -24,7 +24,6 @@
 
     environment.systemPackages = with pkgs; [
       equibop
-      ghostty
       hyprlauncher
       neovim
       pulsemixer

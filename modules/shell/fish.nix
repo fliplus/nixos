@@ -7,5 +7,7 @@
         set fish_greeting
       '';
     };
+
+    preferences.persist.home.files = [ ".local/share/fish/fish_history" ];
   };
 }

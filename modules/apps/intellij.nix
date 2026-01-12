@@ -5,6 +5,7 @@
 
     plugins = lib.attrValues (pluginsForIde pkgs "idea" [
       "IdeaVIM"
+      "dev.azn9.plugins.discord"
       "com.demonwav.minecraft-dev"
       "dev.kikugie.stonecutter"
     ]);
