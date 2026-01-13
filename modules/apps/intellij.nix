@@ -13,6 +13,7 @@
   {
     environment.systemPackages = with pkgs; [
       (jetbrains.plugins.addPlugins (jetbrains.idea.override { forceWayland = true; }) plugins)
+      javaPackages.compiler.temurin-bin.jdk-25
     ];
 
     preferences.persist.home.directories = [

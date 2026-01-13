@@ -15,9 +15,9 @@
 
       settings = {
         exec-once = [
-	  "swww-daemon"
+          "swww-daemon"
           "1password --silent"
-	];
+        ];
 
         general = {
           gaps_in = 5;
@@ -25,7 +25,7 @@
 
           border_size = 2;
 
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          "col.active_border" = "rgba(458588ee)";
           "col.inactive_border" = "rgba(595959aa)";
         };
 
@@ -84,6 +84,11 @@
         };
 
         xwayland.force_zero_scaling = true;
+
+        input = {
+          kb_layout = "us";
+          kb_options = "compose:caps";
+        };
 
         "$mod" = "SUPER";
 
