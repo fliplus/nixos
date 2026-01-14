@@ -103,7 +103,7 @@
 
           "$mod, Q, exec, ghostty"
           "$mod, R, exec, hyprlauncher"
-          "$mod, B, exec, zen"
+          "$mod, B, exec, zen-twilight"
           "$mod, D, exec, equibop"
 
           "$mod, left, movefocus, l"

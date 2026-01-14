@@ -29,6 +29,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
+
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
