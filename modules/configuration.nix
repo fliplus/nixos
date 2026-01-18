@@ -13,20 +13,10 @@
 
     i18n.defaultLocale = "en_US.UTF-8";
 
-    services.pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-	support32Bit = true;
-      };
-      pulse.enable = true;
-    };
-
     environment.systemPackages = with pkgs; [
       equibop
       hyprlauncher
       neovim
-      pulsemixer
       inputs.zen-browser.packages.${stdenv.hostPlatform.system}.twilight
     ];
 
@@ -62,7 +52,6 @@
 
     preferences.persist.root = {
       directories = [
-        "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/etc/NetworkManager/system-connections"
       ];
@@ -75,7 +64,6 @@
       ".config/equibop"
       ".config/hypr"
       ".local/share/Steam"
-      ".local/state/wireplumber"
       ".zen"
       "nixos"
     ];
