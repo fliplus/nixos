@@ -31,8 +31,6 @@
       };
     };
 
-    programs.steam.enable = true;
-
     programs.git = {
       enable = true;
 
@@ -62,8 +60,6 @@
     preferences.persist.home.directories = [
       ".config/1Password"
       ".config/equibop"
-      ".config/hypr"
-      ".local/share/Steam"
       ".zen"
       "nixos"
     ];

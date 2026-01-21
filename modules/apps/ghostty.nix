@@ -15,6 +15,7 @@
         window-padding-x = 8;
         window-padding-y = 8;
         confirm-close-surface = false;
+        shell-integration-features = "ssh-terminfo,ssh-env";
       };
     };
   };

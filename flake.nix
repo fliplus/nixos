@@ -29,6 +29,7 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     nix-jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };

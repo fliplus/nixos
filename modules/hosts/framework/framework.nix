@@ -1,5 +1,7 @@
 {
   flake.nixosModules.host-framework = {
+    networking.hostId = "c915d58c";
+
     preferences.monitors = [
       {
         name = "eDP-1";
@@ -10,7 +12,5 @@
     ];
 
     networking.resolvconf.dnsExtensionMechanism = false;
-
-    networking.hostId = "c915d58c";
   };
 }
