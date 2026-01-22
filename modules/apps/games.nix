@@ -11,6 +11,14 @@
       ];
     };
 
-    preferences.persist.home.directories = [ ".local/share/Steam" ];
+    environment.systemPackages = with pkgs; [
+      heroic
+    ];
+
+    preferences.persist.home.directories = [
+      ".local/share/Steam"
+      ".config/heroic"
+      "Games"
+    ];
   };
 }
