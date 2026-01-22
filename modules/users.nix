@@ -1,33 +1,42 @@
 {
-  flake.nixosModules.core = { config, pkgs, user, ... }:
-
+  flake.nixosModules.core = { config, lib, pkgs, user, ... }:
+  let
+    inherit (lib) filter hasInfix mkOption;
+  in
   {
-    users = {
-      mutableUsers = false;
-
-      users = {
-        root = {
-          initialPassword = "password";
-          hashedPasswordFile = "/persist/password";
-        };
-
-        ${user} = {
-          isNormalUser = true;
-
-          initialPassword = "password";
-          hashedPasswordFile = "/persist/password";
-
-          extraGroups = [ "wheel" ];
-
-          shell = pkgs.fish;
-        };
-      };
+    # supress mutiple password options warning
+    options.warnings = mkOption {
+      apply = filter (warning: !(hasInfix "If multiple of these password options are set at the same time" warning));
     };
 
-    preferences.persist.home.directories = [
-      "Desktop"
-      "dev"
-      "Downloads"
-    ];
+    config = {
+      users = {
+        mutableUsers = false;
+
+        users = {
+          root = {
+            initialPassword = "password";
+            hashedPasswordFile = "/persist/password";
+          };
+
+          ${user} = {
+            isNormalUser = true;
+
+            initialPassword = "password";
+            hashedPasswordFile = "/persist/password";
+
+            extraGroups = [ "wheel" ];
+
+            shell = pkgs.fish;
+          };
+        };
+      };
+
+      preferences.persist.home.directories = [
+        "Desktop"
+        "dev"
+        "Downloads"
+      ];
+    };
   };
 }
