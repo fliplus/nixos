@@ -16,7 +16,6 @@
     environment.systemPackages = with pkgs; [
       equibop
       hyprlauncher
-      neovim
       inputs.zen-browser.packages.${stdenv.hostPlatform.system}.twilight
     ];
 
