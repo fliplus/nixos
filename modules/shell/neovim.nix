@@ -13,25 +13,49 @@
         };
 
         options = {
+          expandtab = true;
           shiftwidth = 2;
+
+          scrolloff = 8;
+
+          colorcolumn = "120";
         };
 
-        lsp.enable = true;
+        lsp = {
+          enable = true;
+          formatOnSave = true;
+        };
+
+        languages = {
+          enableTreesitter = true;
+          enableFormat = true;
+
+          nix.enable = true;
+        };
 
         autocomplete.nvim-cmp.enable = true;
         snippets.luasnip.enable = true;
 
-        languages = {
-          enableTreesitter = true;
+        telescope.enable = true;
 
-          nix = {
-            enable = true;
-            format.type = ["nixfmt"];
-          };
+        utility = {
+          yazi-nvim.enable = true;
+          motion.flash-nvim.enable = true;
         };
 
+        autopairs.nvim-autopairs.enable = true;
+
         statusline.lualine.enable = true;
+
         binds.whichKey.enable = true;
+
+        keymaps = [
+          {
+            key = "<leader>?";
+            mode = "n";
+            action = '':lua require("which-key").show()<cr>'';
+          }
+        ];
       };
     };
   };
