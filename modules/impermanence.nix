@@ -1,9 +1,12 @@
 {
-  flake.nixosModules.core = { config, lib, user, ... }:
-  let
+  flake.nixosModules.core = {
+    config,
+    lib,
+    user,
+    ...
+  }: let
     persist = config.preferences.persist;
-  in
-  {
+  in {
     boot.initrd.postResumeCommands = lib.mkAfter ''
       zfs rollback -r zroot/local/root@blank
     '';

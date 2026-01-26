@@ -1,8 +1,6 @@
 {
-  flake.nixosModules.core = { inputs, ... }:
-
-  {
-    imports = [ inputs.nvf.nixosModules.default ];
+  flake.nixosModules.core = {inputs, ...}: {
+    imports = [inputs.nvf.nixosModules.default];
 
     programs.nvf = {
       enable = true;
@@ -28,7 +26,7 @@
 
           nix = {
             enable = true;
-            format.type = [ "nixfmt" ];
+            format.type = ["nixfmt"];
           };
         };
 

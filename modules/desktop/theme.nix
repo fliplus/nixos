@@ -1,7 +1,9 @@
 {
-  flake.nixosModules.core = { pkgs, user, ... }:
-
-  {
+  flake.nixosModules.core = {
+    pkgs,
+    user,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       kdePackages.breeze
       adw-gtk3

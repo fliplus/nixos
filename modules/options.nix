@@ -1,15 +1,11 @@
 {
-  flake.nixosModules.core = { lib, ... }:
-  let
+  flake.nixosModules.core = {lib, ...}: let
     inherit (lib) any assertMsg hasPrefix mkOption;
     inherit (lib.types) int listOf nonEmptyListOf str submodule;
 
-    assertNoHomeDirs =
-      paths:
-      assert (assertMsg (!any (hasPrefix "/home") paths) "/home used in a root persist!");
-      paths;
-  in
-  {
+    assertNoHomeDirs = paths:
+      assert (assertMsg (!any (hasPrefix "/home") paths) "/home used in a root persist!"); paths;
+  in {
     options.preferences = {
       persist = {
         root = {
@@ -17,13 +13,13 @@
             description = "Directories to persist in root filesystem";
             type = listOf str;
             apply = assertNoHomeDirs;
-            default = [ ];
+            default = [];
           };
           files = mkOption {
             description = "Files to persist in root filesystem";
             type = listOf str;
             apply = assertNoHomeDirs;
-            default = [ ];
+            default = [];
           };
 
           cache = {
@@ -31,13 +27,13 @@
               description = "Directories to persist, but not to snapshot";
               type = listOf str;
               apply = assertNoHomeDirs;
-              default = [ ];
+              default = [];
             };
             files = mkOption {
               description = "Files to persist, but not to snapshot";
               type = listOf str;
               apply = assertNoHomeDirs;
-              default = [ ];
+              default = [];
             };
           };
         };
@@ -46,24 +42,24 @@
           directories = mkOption {
             description = "Directories to persist in home directory";
             type = listOf str;
-            default = [ ];
+            default = [];
           };
           files = mkOption {
             description = "Files to persist in home directory";
             type = listOf str;
-            default = [ ];
+            default = [];
           };
 
           cache = {
             directories = mkOption {
               description = "Directories to persist, but not to snapshot";
               type = listOf str;
-              default = [ ];
+              default = [];
             };
             files = mkOption {
               description = "Files to persist, but not to snapshot";
               type = listOf str;
-              default = [ ];
+              default = [];
             };
           };
         };
@@ -95,7 +91,7 @@
             };
           };
         });
-        default = [ ];
+        default = [];
       };
     };
   };

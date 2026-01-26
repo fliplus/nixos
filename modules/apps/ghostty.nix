@@ -1,13 +1,16 @@
 {
-  flake.nixosModules.core = { lib, pkgs, user, ... }:
-
-  {
+  flake.nixosModules.core = {
+    lib,
+    pkgs,
+    user,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       ghostty
     ];
 
     hjem.users.${user}.xdg.config.files."ghostty/config" = {
-      generator = lib.generators.toKeyValue { };
+      generator = lib.generators.toKeyValue {};
 
       value = {
         theme = "Gruvbox Dark";

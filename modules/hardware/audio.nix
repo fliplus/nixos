@@ -1,8 +1,5 @@
-
 {
-  flake.nixosModules.core = { pkgs, ... }:
-  
-  {
+  flake.nixosModules.core = {pkgs, ...}: {
     services.pipewire = {
       enable = true;
       alsa = {
@@ -16,6 +13,6 @@
       pulsemixer
     ];
 
-    preferences.persist.home.directories = [ ".local/state/wireplumber" ];
+    preferences.persist.home.directories = [".local/state/wireplumber"];
   };
 }

@@ -4,6 +4,6 @@
 
     services.blueman.enable = true;
 
-    preferences.persist.root.directories = [ "/var/lib/bluetooth" ];
+    preferences.persist.root.directories = ["/var/lib/bluetooth"];
   };
 }

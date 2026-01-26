@@ -1,12 +1,15 @@
 {
-  flake.nixosModules.core = { inputs, pkgs, host, ... }:
-
-  {
+  flake.nixosModules.core = {
+    inputs,
+    pkgs,
+    host,
+    ...
+  }: {
     networking.hostName = host;
 
     networking.networkmanager = {
       enable = true;
-      insertNameservers = [ "1.1.1.1" ];
+      insertNameservers = ["1.1.1.1"];
     };
 
     time.timeZone = "Europe/Lisbon";
@@ -53,7 +56,7 @@
         "/etc/NetworkManager/system-connections"
       ];
 
-      files = [ "/etc/machine-id" ];
+      files = ["/etc/machine-id"];
     };
 
     preferences.persist.home.directories = [

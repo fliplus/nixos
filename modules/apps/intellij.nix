@@ -1,6 +1,10 @@
 {
-  flake.nixosModules.core = { inputs, lib, pkgs, ... }:
-  let
+  flake.nixosModules.core = {
+    inputs,
+    lib,
+    pkgs,
+    ...
+  }: let
     inherit (inputs.nix-jetbrains-plugins.lib) pluginsForIde;
 
     plugins = lib.attrValues (pluginsForIde pkgs "idea" [
@@ -9,10 +13,9 @@
       "com.demonwav.minecraft-dev"
       "dev.kikugie.stonecutter"
     ]);
-  in
-  {
+  in {
     environment.systemPackages = with pkgs; [
-      (jetbrains.plugins.addPlugins (jetbrains.idea.override { forceWayland = true; }) plugins)
+      (jetbrains.plugins.addPlugins (jetbrains.idea.override {forceWayland = true;}) plugins)
       javaPackages.compiler.temurin-bin.jdk-25
     ];
 

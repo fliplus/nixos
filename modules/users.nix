@@ -1,9 +1,13 @@
 {
-  flake.nixosModules.core = { config, lib, pkgs, user, ... }:
-  let
+  flake.nixosModules.core = {
+    config,
+    lib,
+    pkgs,
+    user,
+    ...
+  }: let
     inherit (lib) filter hasInfix mkOption;
-  in
-  {
+  in {
     # supress mutiple password options warning
     options.warnings = mkOption {
       apply = filter (warning: !(hasInfix "If multiple of these password options are set at the same time" warning));
@@ -25,7 +29,7 @@
             initialPassword = "password";
             hashedPasswordFile = "/persist/password";
 
-            extraGroups = [ "wheel" ];
+            extraGroups = ["wheel"];
 
             shell = pkgs.fish;
           };

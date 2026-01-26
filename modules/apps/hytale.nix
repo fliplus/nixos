@@ -1,7 +1,9 @@
 {
-  flake.nixosModules.core = { inputs, pkgs, ... }:
-
-  {
+  flake.nixosModules.core = {
+    inputs,
+    pkgs,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];

@@ -10,6 +10,6 @@
 
     documentation.man.generateCaches = false;
 
-    preferences.persist.home.files = [ ".local/share/fish/fish_history" ];
+    preferences.persist.home.files = [".local/share/fish/fish_history"];
   };
 }

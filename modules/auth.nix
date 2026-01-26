@@ -1,7 +1,9 @@
 {
-  flake.nixosModules.core = { config, user, ... }:
-
-  {
+  flake.nixosModules.core = {
+    config,
+    user,
+    ...
+  }: {
     services.openssh.enable = true;
     programs.ssh.extraConfig = ''
       Host *
@@ -14,13 +16,13 @@
       settings = {
         bigclock = "en";
         bigclock_seconds = true;
-	save = true;
+        save = true;
         vi_default_mode = "insert";
         vi_mode = true;
       };
     };
 
-    preferences.persist.root.files = [ "/etc/ly/save.txt" ];
-    preferences.persist.home.directories = [ ".ssh" ];
+    preferences.persist.root.files = ["/etc/ly/save.txt"];
+    preferences.persist.home.directories = [".ssh"];
   };
 }
