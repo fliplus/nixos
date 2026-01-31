@@ -10,10 +10,11 @@
     ];
 
     hjem.users.${user}.xdg.config.files."ghostty/config" = {
-      generator = lib.generators.toKeyValue {};
+      generator = lib.generators.toKeyValue {
+        mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+      };
 
       value = {
-        theme = "Gruvbox Dark";
         background-opacity = 0.85;
         window-padding-x = 8;
         window-padding-y = 8;
