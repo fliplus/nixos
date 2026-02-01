@@ -50,6 +50,8 @@
         IdentityAgent ~/.1password/agent.sock
     '';
 
+    programs.nano.enable = false;
+
     preferences.persist.root = {
       directories = [
         "/var/lib/nixos"

@@ -2,6 +2,10 @@
   flake.nixosModules.core = {inputs, ...}: {
     imports = [inputs.nvf.nixosModules.default];
 
+    environment.variables = {
+      EDITOR = "nvim";
+    };
+
     programs.nvf = {
       enable = true;
 
@@ -31,6 +35,7 @@
           enableFormat = true;
 
           nix.enable = true;
+          ruby.enable = true;
         };
 
         autocomplete.nvim-cmp.enable = true;
