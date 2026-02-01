@@ -40,6 +40,7 @@
         "Desktop"
         "dev"
         "Downloads"
+        "Pictures"
       ];
     };
   };
