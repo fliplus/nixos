@@ -17,21 +17,8 @@
     i18n.defaultLocale = "en_US.UTF-8";
 
     environment.systemPackages = with pkgs; [
-      equibop
       hyprlauncher
-      inputs.zen-browser.packages.${stdenv.hostPlatform.system}.twilight
     ];
-
-    programs._1password-gui.enable = true;
-
-    environment.etc = {
-      "1password/custom_allowed_browsers" = {
-        text = ''
-          zen
-        '';
-        mode = "0755";
-      };
-    };
 
     programs.git = {
       enable = true;
@@ -45,10 +32,6 @@
     };
 
     services.openssh.enable = true;
-    programs.ssh.extraConfig = ''
-      Host *
-        IdentityAgent ~/.1password/agent.sock
-    '';
 
     programs.nano.enable = false;
 
@@ -62,9 +45,6 @@
     };
 
     preferences.persist.home.directories = [
-      ".config/1Password"
-      ".config/equibop"
-      ".zen"
       "nixos"
     ];
 

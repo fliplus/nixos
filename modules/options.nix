@@ -93,6 +93,28 @@
         });
         default = [];
       };
+
+      binds = mkOption {
+        description = "Configuration for keybinds";
+        type = nonEmptyListOf (submodule {
+          options = {
+            hotkey = mkOption {
+              description = "Hotkey";
+              type = listOf str;
+            };
+            command = mkOption {
+              description = "Command to execute";
+              type = listOf str;
+            };
+          };
+        });
+        default = [];
+      };
+      auto-start = mkOption {
+        description = "Programs to start automatically";
+        type = listOf (listOf str);
+        default = [];
+      };
     };
   };
 }

@@ -22,5 +22,12 @@
         shell-integration-features = "ssh-terminfo,ssh-env";
       };
     };
+
+    preferences.binds = [
+      {
+        hotkey = ["Mod" "T"];
+        command = ["ghostty"];
+      }
+    ];
   };
 }
