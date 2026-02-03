@@ -5,10 +5,6 @@
     ...
   }: {
     services.openssh.enable = true;
-    programs.ssh.extraConfig = ''
-      Host *
-        IdentityAgent ~/.1password/agent.sock
-    '';
 
     services.displayManager.ly = {
       enable = true;
