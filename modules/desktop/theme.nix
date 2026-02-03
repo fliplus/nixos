@@ -30,5 +30,15 @@
         }
       ];
     };
+
+    qt = {
+      enable = true;
+      platformTheme = "qt5ct";
+    };
+
+    preferences.persist.home.files = [
+      ".config/qt5ct/qt5ct.conf"
+      ".config/qt6ct/qt6ct.conf"
+    ];
   };
 }
