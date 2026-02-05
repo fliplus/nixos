@@ -1,5 +1,6 @@
 {
   flake.nixosModules.core = {
+    inputs,
     config,
     lib,
     pkgs,
@@ -26,6 +27,12 @@
       );
 
       zfs.package = pkgs.zfs_unstable;
+
+      plymouth = {
+        enable = true;
+        theme = "mac-style";
+        themePackages = [inputs.mac-style-plymouth.packages.${pkgs.stdenv.hostPlatform.system}.default];
+      };
     };
   };
 }

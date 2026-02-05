@@ -41,12 +41,16 @@
         autocomplete.nvim-cmp.enable = true;
         snippets.luasnip.enable = true;
 
+        git.enable = true;
+
         telescope.enable = true;
 
         utility = {
           yazi-nvim.enable = true;
           motion.flash-nvim.enable = true;
         };
+
+        filetree.neo-tree.enable = true;
 
         autopairs.nvim-autopairs.enable = true;
 
