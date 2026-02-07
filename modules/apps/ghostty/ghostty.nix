@@ -20,6 +20,8 @@
         window-padding-y = 8;
         confirm-close-surface = false;
         shell-integration-features = "ssh-terminfo,ssh-env";
+
+        custom-shader = "${./cursor_smear.glsl}";
       };
     };
 

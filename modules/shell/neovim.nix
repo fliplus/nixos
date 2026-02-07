@@ -65,6 +65,14 @@
             action = '':lua require("which-key").show()<cr>'';
           }
         ];
+
+        luaConfigPost =
+          /*
+          lua
+          */
+          ''
+            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+          '';
       };
     };
   };
