@@ -6,7 +6,9 @@
     pkgs,
     user,
     ...
-  }: {
+  }: let
+    inherit (lib) concatStringsSep getExe listToAttrs;
+  in {
     programs.niri = {
       enable = true;
       package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -22,15 +24,15 @@
       config = ''
         prefer-no-csd
 
-        output "HDMI-A-1" {
-            mode "1920x1080@239.757"
-            position x=0 y=0
-        }
-
-        output "DP-3" {
-            mode "1920x1080@144.001"
-            position x=1920 y=0
-        }
+        ${concatStringsSep "\n" (
+          map (monitor: ''
+            output "${monitor.name}" {
+                mode "${monitor.resolution}@${toString monitor.refreshRate}"
+                position x=${toString monitor.x} y=${toString monitor.y}
+            }
+          '')
+          config.preferences.monitors
+        )}
 
         input {
             keyboard {
@@ -79,7 +81,7 @@
         }
 
         xwayland-satellite {
-            path "${lib.getExe pkgs.xwayland-satellite}"
+            path "${getExe pkgs.xwayland-satellite}"
         }
       '';
 
@@ -215,13 +217,15 @@
 
           "Mod+Shift+P".action = "power-off-monitors";
         }
-        // lib.listToAttrs (map (bind: {
-            name = lib.concatStringsSep "+" bind.hotkey;
+        // listToAttrs (
+          map (bind: {
+            name = concatStringsSep "+" bind.hotkey;
             value = {
               spawn = bind.command;
             };
           })
-          config.preferences.binds);
+          config.preferences.binds
+        );
     };
   };
 }

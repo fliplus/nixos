@@ -1,7 +1,7 @@
 {
   flake.nixosModules.core = {lib, ...}: let
     inherit (lib) any assertMsg hasPrefix mkOption;
-    inherit (lib.types) int listOf nonEmptyListOf str submodule;
+    inherit (lib.types) float int listOf nonEmptyListOf str submodule;
 
     assertNoHomeDirs = paths:
       assert (assertMsg (!any (hasPrefix "/home") paths) "/home used in a root persist!"); paths;
@@ -79,15 +79,15 @@
             };
             refreshRate = mkOption {
               description = "Refresh rate of the display";
+              type = float;
+            };
+            x = mkOption {
+              description = "X position of the display";
               type = int;
             };
-            position = mkOption {
-              description = "Position of the display";
-              type = str;
-            };
-            workspaces = mkOption {
-              description = "List of workspace numbers";
-              type = listOf int;
+            y = mkOption {
+              description = "Y position of the display";
+              type = int;
             };
           };
         });
