@@ -29,12 +29,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri.url = "github:niri-wm/niri";
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    niri.url = "github:YaLTeR/niri";
 
     mac-style-plymouth = {
       url = "github:SergioRibera/s4rchiso-plymouth-theme";

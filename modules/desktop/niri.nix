@@ -69,6 +69,12 @@
             border {
                 width 2
             }
+
+            background-color "#000000"
+        }
+
+        overview {
+            backdrop-color "#000000"
         }
 
         window-rule {
