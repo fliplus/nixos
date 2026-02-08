@@ -19,7 +19,14 @@
           "Mod+S".spawn = ["noctalia-shell" "ipc" "call" "launcher" "toggle"];
         };
 
-        config = ''include optional=true "/home/flip/.config/niri/noctalia.kdl"'';
+        config = ''
+          include optional=true "/home/flip/.config/niri/noctalia.kdl"
+
+          layer-rule {
+              match namespace="^noctalia-overview*"
+              place-within-backdrop true
+          }
+        '';
       };
 
       xdg.config.files."ghostty/config" = {
