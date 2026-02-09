@@ -19,10 +19,12 @@ let
           };
         }
 
-        config.flake.nixosModules."host-${host}"
-
         inputs.disko.nixosModules.disko
+        inputs.disko.flakeModules.default
+        { flake.diskoConfigurations = config.flake.nixosModules."disko-${host}"; }
         config.flake.nixosModules."disko-${host}"
+
+        config.flake.nixosModules."host-${host}"
 
         config.flake.nixosModules.core
       ]
