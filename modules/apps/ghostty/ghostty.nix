@@ -1,35 +1,40 @@
 {
-  flake.nixosModules.core = {
-    lib,
-    pkgs,
-    user,
-    ...
-  }: {
-    environment.systemPackages = with pkgs; [
-      ghostty
-    ];
+  flake.nixosModules.core =
+    {
+      lib,
+      pkgs,
+      user,
+      ...
+    }:
+    {
+      environment.systemPackages = with pkgs; [
+        ghostty
+      ];
 
-    hjem.users.${user}.xdg.config.files."ghostty/config" = {
-      generator = lib.generators.toKeyValue {
-        mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+      hjem.users.${user}.xdg.config.files."ghostty/config" = {
+        generator = lib.generators.toKeyValue {
+          mkKeyValue = lib.generators.mkKeyValueDefault { } " = ";
+        };
+
+        value = {
+          background-opacity = 0.85;
+          window-padding-x = 8;
+          window-padding-y = 8;
+          confirm-close-surface = false;
+          shell-integration-features = "ssh-terminfo,ssh-env";
+
+          custom-shader = "${./cursor_smear.glsl}";
+        };
       };
 
-      value = {
-        background-opacity = 0.85;
-        window-padding-x = 8;
-        window-padding-y = 8;
-        confirm-close-surface = false;
-        shell-integration-features = "ssh-terminfo,ssh-env";
-
-        custom-shader = "${./cursor_smear.glsl}";
-      };
+      preferences.binds = [
+        {
+          hotkey = [
+            "Mod"
+            "T"
+          ];
+          command = [ "ghostty" ];
+        }
+      ];
     };
-
-    preferences.binds = [
-      {
-        hotkey = ["Mod" "T"];
-        command = ["ghostty"];
-      }
-    ];
-  };
 }

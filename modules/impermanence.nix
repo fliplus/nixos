@@ -1,42 +1,45 @@
 {
-  flake.nixosModules.core = {
-    config,
-    lib,
-    user,
-    ...
-  }: let
-    persist = config.preferences.persist;
-  in {
-    boot.initrd.postResumeCommands = lib.mkAfter ''
-      zfs rollback -r zroot/local/root@blank
-    '';
+  flake.nixosModules.core =
+    {
+      config,
+      lib,
+      user,
+      ...
+    }:
+    let
+      persist = config.preferences.persist;
+    in
+    {
+      boot.initrd.postResumeCommands = lib.mkAfter ''
+        zfs rollback -r zroot/local/root@blank
+      '';
 
-    fileSystems."/persist".neededForBoot = true;
-    environment.persistence."/persist" = {
-      hideMounts = true;
+      fileSystems."/persist".neededForBoot = true;
+      environment.persistence."/persist" = {
+        hideMounts = true;
 
-      directories = persist.root.directories;
-      files = persist.root.files;
+        directories = persist.root.directories;
+        files = persist.root.files;
 
-      users.${user} = {
-        directories = persist.home.directories;
-        files = persist.home.files;
+        users.${user} = {
+          directories = persist.home.directories;
+          files = persist.home.files;
+        };
       };
-    };
 
-    fileSystems."/cache".neededForBoot = true;
-    environment.persistence."/cache" = {
-      hideMounts = true;
+      fileSystems."/cache".neededForBoot = true;
+      environment.persistence."/cache" = {
+        hideMounts = true;
 
-      directories = persist.root.cache.directories;
-      files = persist.root.cache.files;
+        directories = persist.root.cache.directories;
+        files = persist.root.cache.files;
 
-      users.${user} = {
-        directories = persist.home.cache.directories;
-        files = persist.home.cache.files;
+        users.${user} = {
+          directories = persist.home.cache.directories;
+          files = persist.home.cache.files;
+        };
       };
-    };
 
-    security.sudo.extraConfig = "Defaults lecture=never";
-  };
+      security.sudo.extraConfig = "Defaults lecture=never";
+    };
 }

@@ -1,7 +1,9 @@
 {
-  flake.nixosModules.core = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
-      thunar
-    ];
-  };
+  flake.nixosModules.core =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = with pkgs; [
+        thunar
+      ];
+    };
 }

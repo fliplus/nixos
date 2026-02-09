@@ -1,11 +1,13 @@
 {
-  flake.nixosModules.core = {inputs, ...}: {
-    imports = [inputs.hjem.nixosModules.hjem];
+  flake.nixosModules.core =
+    { inputs, ... }:
+    {
+      imports = [ inputs.hjem.nixosModules.hjem ];
 
-    hjem = {
-      extraModules = [inputs.hjem-rum.hjemModules.hjem-rum];
+      hjem = {
+        extraModules = [ inputs.hjem-rum.hjemModules.hjem-rum ];
 
-      clobberByDefault = true;
+        clobberByDefault = true;
+      };
     };
-  };
 }

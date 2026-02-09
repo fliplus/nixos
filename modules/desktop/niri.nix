@@ -1,103 +1,104 @@
 {
-  flake.nixosModules.core = {
-    inputs,
-    config,
-    lib,
-    pkgs,
-    user,
-    ...
-  }: let
-    inherit (lib) concatStringsSep getExe listToAttrs;
-  in {
-    programs.niri = {
-      enable = true;
-      package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    };
+  flake.nixosModules.core =
+    {
+      inputs,
+      config,
+      lib,
+      pkgs,
+      user,
+      ...
+    }:
+    let
+      inherit (lib) concatStringsSep getExe listToAttrs;
+    in
+    {
+      programs.niri = {
+        enable = true;
+        package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+      environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    hjem.users.${user}.rum.desktops.niri = {
-      enable = true;
+      hjem.users.${user}.rum.desktops.niri = {
+        enable = true;
 
-      spawn-at-startup = config.preferences.auto-start;
+        spawn-at-startup = config.preferences.auto-start;
 
-      config = ''
-        prefer-no-csd
+        config = ''
+          prefer-no-csd
 
-        ${concatStringsSep "\n" (
-          map (monitor: ''
-            output "${monitor.name}" {
-                mode "${monitor.resolution}@${toString monitor.refreshRate}"
-                position x=${toString monitor.x} y=${toString monitor.y}
-            }
-          '')
-          config.preferences.monitors
-        )}
+          ${concatStringsSep "\n" (
+            map (monitor: ''
+              output "${monitor.name}" {
+                  mode "${monitor.resolution}@${toString monitor.refreshRate}"
+                  position x=${toString monitor.x} y=${toString monitor.y}
+              }
+            '') config.preferences.monitors
+          )}
 
-        input {
-            keyboard {
-                xkb {
-                    options "caps:super, compose:lwin"
-                }
-            }
+          input {
+              keyboard {
+                  xkb {
+                      options "caps:super, compose:lwin"
+                  }
+              }
 
-            mouse {
-                accel-profile "flat"
-            }
+              mouse {
+                  accel-profile "flat"
+              }
 
-            touchpad {
-              tap
-              natural-scroll
-            }
+              touchpad {
+                tap
+                natural-scroll
+              }
 
-            focus-follows-mouse max-scroll-amount="50%"
-        }
-
-        gestures {
-          hot-corners {
-              off
+              focus-follows-mouse max-scroll-amount="50%"
           }
-        }
 
-        cursor {
-            xcursor-theme "Breeze_Light"
-            xcursor-size 24
-        }
-
-        layout {
-            gaps 8
-
-            focus-ring {
+          gestures {
+            hot-corners {
                 off
             }
+          }
 
-            border {
-                width 2
-            }
+          cursor {
+              xcursor-theme "Breeze_Light"
+              xcursor-size 24
+          }
 
-            background-color "#000000"
-        }
+          layout {
+              gaps 8
 
-        overview {
-            backdrop-color "#000000"
-        }
+              focus-ring {
+                  off
+              }
 
-        window-rule {
-            geometry-corner-radius 12
-            clip-to-geometry true
-        }
+              border {
+                  width 2
+              }
 
-        hotkey-overlay {
-            skip-at-startup
-        }
+              background-color "#000000"
+          }
 
-        xwayland-satellite {
-            path "${getExe pkgs.xwayland-satellite}"
-        }
-      '';
+          overview {
+              backdrop-color "#000000"
+          }
 
-      binds =
-        {
+          window-rule {
+              geometry-corner-radius 12
+              clip-to-geometry true
+          }
+
+          hotkey-overlay {
+              skip-at-startup
+          }
+
+          xwayland-satellite {
+              path "${getExe pkgs.xwayland-satellite}"
+          }
+        '';
+
+        binds = {
           "Mod+Shift+Slash".action = "show-hotkey-overlay";
 
           "Mod+O" = {
@@ -234,9 +235,8 @@
             value = {
               spawn = bind.command;
             };
-          })
-          config.preferences.binds
+          }) config.preferences.binds
         );
+      };
     };
-  };
 }

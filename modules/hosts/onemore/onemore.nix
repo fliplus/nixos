@@ -19,7 +19,7 @@
       }
     ];
 
-    boot.kernelModules = ["amdgpu"];
+    boot.kernelModules = [ "amdgpu" ];
 
     environment.etc."libinput/local-overrides.quirks".text = ''
       [Never Debounce]

@@ -1,53 +1,55 @@
 {
-  flake.nixosModules.core = {
-    inputs,
-    pkgs,
-    host,
-    ...
-  }: {
-    networking.hostName = host;
+  flake.nixosModules.core =
+    {
+      inputs,
+      pkgs,
+      host,
+      ...
+    }:
+    {
+      networking.hostName = host;
 
-    networking.networkmanager = {
-      enable = true;
-      insertNameservers = ["1.1.1.1"];
-    };
-
-    time.timeZone = "Europe/Lisbon";
-
-    i18n.defaultLocale = "en_US.UTF-8";
-
-    environment.systemPackages = with pkgs; [
-      hyprlauncher
-    ];
-
-    programs.git = {
-      enable = true;
-
-      config = {
-        user = {
-          name = "Filipe Abreu";
-          email = "134308239+fliplus@users.noreply.github.com";
-        };
+      networking.networkmanager = {
+        enable = true;
+        insertNameservers = [ "1.1.1.1" ];
       };
-    };
 
-    services.openssh.enable = true;
+      time.timeZone = "Europe/Lisbon";
 
-    programs.nano.enable = false;
+      i18n.defaultLocale = "en_US.UTF-8";
 
-    preferences.persist.root = {
-      directories = [
-        "/var/lib/nixos"
-        "/etc/NetworkManager/system-connections"
+      environment.systemPackages = with pkgs; [
+        hyprlauncher
       ];
 
-      files = ["/etc/machine-id"];
+      programs.git = {
+        enable = true;
+
+        config = {
+          user = {
+            name = "Filipe Abreu";
+            email = "134308239+fliplus@users.noreply.github.com";
+          };
+        };
+      };
+
+      services.openssh.enable = true;
+
+      programs.nano.enable = false;
+
+      preferences.persist.root = {
+        directories = [
+          "/var/lib/nixos"
+          "/etc/NetworkManager/system-connections"
+        ];
+
+        files = [ "/etc/machine-id" ];
+      };
+
+      preferences.persist.home.directories = [
+        "nixos"
+      ];
+
+      system.stateVersion = "25.11";
     };
-
-    preferences.persist.home.directories = [
-      "nixos"
-    ];
-
-    system.stateVersion = "25.11";
-  };
 }
