@@ -6,8 +6,9 @@
       {
         name = "eDP-1";
         resolution = "2560x1600";
-        refreshRate = 165;
-        position = "0x0";
+        refreshRate = 165.000;
+        x = 0;
+        y = 0;
       }
     ];
 

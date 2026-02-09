@@ -45,6 +45,11 @@
                 accel-profile "flat"
             }
 
+            touchpad {
+              tap
+              natural-scroll
+            }
+
             focus-follows-mouse max-scroll-amount="50%"
         }
 

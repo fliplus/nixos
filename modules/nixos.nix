@@ -1,26 +1,31 @@
 {
   inputs,
   config,
+  lib,
   ...
 }: let
-  user = "flip";
-  mkNixos = host:
+  mkNixos = host: {
+    user ? "flip",
+    isLaptop ? false,
+  }:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs host user;};
-      modules = [
-        config.flake.nixosModules."host-${host}"
+      specialArgs = {inherit inputs host user isLaptop;};
+      modules =
+        [
+          config.flake.nixosModules."host-${host}"
 
-        inputs.disko.nixosModules.disko
-        config.flake.nixosModules."disko-${host}"
+          inputs.disko.nixosModules.disko
+          config.flake.nixosModules."disko-${host}"
 
-        inputs.impermanence.nixosModules.impermanence
+          inputs.impermanence.nixosModules.impermanence
 
-        config.flake.nixosModules.core
-      ];
+          config.flake.nixosModules.core
+        ]
+        ++ lib.optionals isLaptop [config.flake.nixosModules.laptop];
     };
 in {
   flake.nixosConfigurations = {
-    onemore = mkNixos "onemore";
-    framework = mkNixos "framework";
+    onemore = mkNixos "onemore" {};
+    framework = mkNixos "framework" {isLaptop = true;};
   };
 }
