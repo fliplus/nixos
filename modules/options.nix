@@ -2,53 +2,38 @@
   flake.nixosModules.core =
     { lib, ... }:
     let
-      inherit (lib)
-        any
-        assertMsg
-        hasPrefix
-        mkOption
-        ;
-      inherit (lib.types)
-        float
-        int
-        listOf
-        nonEmptyListOf
-        str
-        submodule
-        ;
-
       assertNoHomeDirs =
         paths:
-        assert (assertMsg (!any (hasPrefix "/home") paths) "/home used in a root persist!");
+        assert (lib.assertMsg (!lib.any (lib.hasPrefix "/home") paths) "/home used in a root persist!");
         paths;
     in
     {
       options.preferences = {
         persist = {
           root = {
-            directories = mkOption {
+            directories = lib.mkOption {
               description = "Directories to persist in root filesystem";
-              type = listOf str;
+              type = lib.types.listOf lib.types.str;
               apply = assertNoHomeDirs;
               default = [ ];
             };
-            files = mkOption {
+            files = lib.mkOption {
               description = "Files to persist in root filesystem";
-              type = listOf str;
+              type = lib.types.listOf lib.types.str;
               apply = assertNoHomeDirs;
               default = [ ];
             };
 
             cache = {
-              directories = mkOption {
+              directories = lib.mkOption {
                 description = "Directories to persist, but not to snapshot";
-                type = listOf str;
+                type = lib.types.listOf lib.types.str;
                 apply = assertNoHomeDirs;
                 default = [ ];
               };
-              files = mkOption {
+              files = lib.mkOption {
                 description = "Files to persist, but not to snapshot";
-                type = listOf str;
+                type = lib.types.listOf lib.types.str;
                 apply = assertNoHomeDirs;
                 default = [ ];
               };
@@ -56,80 +41,84 @@
           };
 
           home = {
-            directories = mkOption {
+            directories = lib.mkOption {
               description = "Directories to persist in home directory";
-              type = listOf str;
+              type = lib.types.listOf lib.types.str;
               default = [ ];
             };
-            files = mkOption {
+            files = lib.mkOption {
               description = "Files to persist in home directory";
-              type = listOf str;
+              type = lib.types.listOf lib.types.str;
               default = [ ];
             };
 
             cache = {
-              directories = mkOption {
+              directories = lib.mkOption {
                 description = "Directories to persist, but not to snapshot";
-                type = listOf str;
+                type = lib.types.listOf lib.types.str;
                 default = [ ];
               };
-              files = mkOption {
+              files = lib.mkOption {
                 description = "Files to persist, but not to snapshot";
-                type = listOf str;
+                type = lib.types.listOf lib.types.str;
                 default = [ ];
               };
             };
           };
         };
 
-        monitors = mkOption {
+        monitors = lib.mkOption {
           description = "Configuration for monitors";
-          type = nonEmptyListOf (submodule {
-            options = {
-              name = mkOption {
-                description = "Name of the display";
-                type = str;
+          type = lib.types.nonEmptyListOf (
+            lib.types.submodule {
+              options = {
+                name = lib.mkOption {
+                  description = "Name of the display";
+                  type = lib.types.str;
+                };
+                resolution = lib.mkOption {
+                  description = "Resolution of the display";
+                  type = lib.types.str;
+                };
+                refreshRate = lib.mkOption {
+                  description = "Refresh rate of the display";
+                  type = lib.types.float;
+                };
+                x = lib.mkOption {
+                  description = "X position of the display";
+                  type = lib.types.int;
+                };
+                y = lib.mkOption {
+                  description = "Y position of the display";
+                  type = lib.types.int;
+                };
               };
-              resolution = mkOption {
-                description = "Resolution of the display";
-                type = str;
-              };
-              refreshRate = mkOption {
-                description = "Refresh rate of the display";
-                type = float;
-              };
-              x = mkOption {
-                description = "X position of the display";
-                type = int;
-              };
-              y = mkOption {
-                description = "Y position of the display";
-                type = int;
-              };
-            };
-          });
+            }
+          );
           default = [ ];
         };
 
-        binds = mkOption {
+        binds = lib.mkOption {
           description = "Configuration for keybinds";
-          type = nonEmptyListOf (submodule {
-            options = {
-              hotkey = mkOption {
-                description = "Hotkey";
-                type = listOf str;
+          type = lib.types.nonEmptyListOf (
+            lib.types.submodule {
+              options = {
+                hotkey = lib.mkOption {
+                  description = "Hotkey";
+                  type = lib.types.listOf lib.types.str;
+                };
+                command = lib.mkOption {
+                  description = "Command to execute";
+                  type = lib.types.listOf lib.types.str;
+                };
               };
-              command = mkOption {
-                description = "Command to execute";
-                type = listOf str;
-              };
-            };
-          });
+            }
+          );
           default = [ ];
         };
-        auto-start = mkOption {
+        auto-start = lib.mkOption {
           description = "Programs to start automatically";
-          type = listOf (listOf str);
+          type = lib.types.listOf (lib.types.listOf lib.types.str);
           default = [ ];
         };
       };

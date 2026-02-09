@@ -8,9 +8,6 @@
       user,
       ...
     }:
-    let
-      inherit (lib) concatStringsSep getExe listToAttrs;
-    in
     {
       programs.niri = {
         enable = true;
@@ -27,7 +24,7 @@
         config = ''
           prefer-no-csd
 
-          ${concatStringsSep "\n" (
+          ${lib.concatStringsSep "\n" (
             map (monitor: ''
               output "${monitor.name}" {
                   mode "${monitor.resolution}@${toString monitor.refreshRate}"
@@ -94,7 +91,7 @@
           }
 
           xwayland-satellite {
-              path "${getExe pkgs.xwayland-satellite}"
+              path "${lib.getExe pkgs.xwayland-satellite}"
           }
         '';
 
@@ -229,9 +226,9 @@
 
           "Mod+Shift+P".action = "power-off-monitors";
         }
-        // listToAttrs (
+        // lib.listToAttrs (
           map (bind: {
-            name = concatStringsSep "+" bind.hotkey;
+            name = lib.concatStringsSep "+" bind.hotkey;
             value = {
               spawn = bind.command;
             };

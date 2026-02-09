@@ -7,14 +7,11 @@
       user,
       ...
     }:
-    let
-      inherit (lib) filter hasInfix mkOption;
-    in
     {
       # supress mutiple password options warning
-      options.warnings = mkOption {
-        apply = filter (
-          warning: !(hasInfix "If multiple of these password options are set at the same time" warning)
+      options.warnings = lib.mkOption {
+        apply = lib.filter (
+          warning: !(lib.hasInfix "If multiple of these password options are set at the same time" warning)
         );
       };
 
