@@ -1,11 +1,10 @@
+{ lib, ... }:
 {
   flake.nixosModules.core =
-    {
-      lib,
-      pkgs,
-      user,
-      ...
-    }:
+    { config, pkgs, ... }:
+    let
+      inherit (config.preferences.system) user;
+    in
     {
       environment.systemPackages = with pkgs; [
         ghostty

@@ -12,21 +12,17 @@ let
       isLaptop ? false,
     }:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit
-          inputs
-          host
-          user
-          isLaptop
-          ;
-      };
       modules = [
+        {
+          config.preferences.system = {
+            inherit host user isLaptop;
+          };
+        }
+
         config.flake.nixosModules."host-${host}"
 
         inputs.disko.nixosModules.disko
         config.flake.nixosModules."disko-${host}"
-
-        inputs.impermanence.nixosModules.impermanence
 
         config.flake.nixosModules.core
       ]

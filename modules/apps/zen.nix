@@ -1,10 +1,7 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         inputs.zen-browser.packages.${stdenv.hostPlatform.system}.twilight

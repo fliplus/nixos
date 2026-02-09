@@ -1,12 +1,10 @@
+{ lib, ... }:
 {
   flake.nixosModules.core =
-    {
-      config,
-      lib,
-      pkgs,
-      user,
-      ...
-    }:
+    { config, pkgs, ... }:
+    let
+      inherit (config.preferences.system) user;
+    in
     {
       # supress mutiple password options warning
       options.warnings = lib.mkOption {

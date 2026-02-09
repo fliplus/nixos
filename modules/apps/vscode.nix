@@ -1,10 +1,7 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       programs.vscode = {
         enable = true;

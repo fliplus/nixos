@@ -1,13 +1,10 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.hytale-launcher.packages.${stdenv.hostPlatform.system}.default
       ];
 
       preferences.persist.home.directories = [

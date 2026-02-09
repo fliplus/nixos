@@ -1,11 +1,7 @@
+{ inputs, lib, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      lib,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     let
       inherit (inputs.nix-jetbrains-plugins.lib) pluginsForIde;
 

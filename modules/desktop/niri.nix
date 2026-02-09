@@ -1,13 +1,10 @@
+{ inputs, lib, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      config,
-      lib,
-      pkgs,
-      user,
-      ...
-    }:
+    { config, pkgs, ... }:
+    let
+      inherit (config.preferences.system) user;
+    in
     {
       programs.niri = {
         enable = true;

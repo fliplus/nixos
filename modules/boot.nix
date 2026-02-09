@@ -1,12 +1,7 @@
+{ inputs, lib, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { config, pkgs, ... }:
     {
       boot = {
         loader = {

@@ -1,10 +1,7 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in

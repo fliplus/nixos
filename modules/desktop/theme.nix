@@ -1,10 +1,6 @@
 {
   flake.nixosModules.core =
-    {
-      pkgs,
-      user,
-      ...
-    }:
+    { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         kdePackages.breeze

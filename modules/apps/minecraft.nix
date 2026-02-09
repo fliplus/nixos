@@ -1,10 +1,6 @@
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         (prismlauncher.override {

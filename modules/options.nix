@@ -1,6 +1,6 @@
+{ lib, ... }:
 {
   flake.nixosModules.core =
-    { lib, ... }:
     let
       assertNoHomeDirs =
         paths:
@@ -9,6 +9,11 @@
     in
     {
       options.preferences = {
+        system = lib.mkOption {
+          type = lib.types.attrsOf lib.types.unspecified;
+          default = { };
+        };
+
         persist = {
           root = {
             directories = lib.mkOption {

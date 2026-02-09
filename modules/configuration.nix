@@ -1,11 +1,9 @@
 {
   flake.nixosModules.core =
-    {
-      inputs,
-      pkgs,
-      host,
-      ...
-    }:
+    { config, pkgs, ... }:
+    let
+      inherit (config.preferences.system) host;
+    in
     {
       networking.hostName = host;
 

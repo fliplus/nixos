@@ -1,10 +1,9 @@
 {
   flake.nixosModules.core =
-    {
-      config,
-      user,
-      ...
-    }:
+    { config, ... }:
+    let
+      inherit (config.preferences.system) user;
+    in
     {
       services.openssh.enable = true;
 

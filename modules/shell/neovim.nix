@@ -1,80 +1,83 @@
+{ inputs, ... }:
 {
-  flake.nixosModules.core =
-    { inputs, ... }:
-    {
-      imports = [ inputs.nvf.nixosModules.default ];
+  flake.nixosModules.core = {
+    imports = [ inputs.nvf.nixosModules.default ];
 
-      environment.variables = {
-        EDITOR = "nvim";
-      };
+    environment.variables = {
+      EDITOR = "nvim";
+    };
 
-      programs.nvf = {
-        enable = true;
+    programs.nvf = {
+      enable = true;
 
-        settings.vim = {
-          theme = {
-            enable = true;
-            name = "gruvbox";
-            style = "dark";
-          };
-
-          options = {
-            expandtab = true;
-            shiftwidth = 2;
-
-            scrolloff = 8;
-
-            colorcolumn = "120";
-          };
-
-          lsp = {
-            enable = true;
-            formatOnSave = true;
-          };
-
-          languages = {
-            enableTreesitter = true;
-            enableFormat = true;
-
-            nix = {
-              enable = true;
-              format.type = "nixfmt";
-            };
-            ruby.enable = true;
-          };
-
-          autocomplete.nvim-cmp.enable = true;
-          snippets.luasnip.enable = true;
-
-          git.enable = true;
-
-          telescope.enable = true;
-
-          utility = {
-            yazi-nvim.enable = true;
-            motion.flash-nvim.enable = true;
-          };
-
-          filetree.neo-tree.enable = true;
-
-          autopairs.nvim-autopairs.enable = true;
-
-          statusline.lualine.enable = true;
-
-          binds.whichKey.enable = true;
-
-          keymaps = [
-            {
-              key = "<leader>?";
-              mode = "n";
-              action = '':lua require("which-key").show()<cr>'';
-            }
-          ];
-
-          luaConfigPost = /* lua */ ''
-            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-          '';
+      settings.vim = {
+        theme = {
+          enable = true;
+          name = "gruvbox";
+          style = "dark";
         };
+
+        options = {
+          expandtab = true;
+          shiftwidth = 2;
+
+          scrolloff = 8;
+
+          colorcolumn = "120";
+        };
+
+        lsp = {
+          enable = true;
+          formatOnSave = true;
+        };
+
+        languages = {
+          enableTreesitter = true;
+          enableFormat = true;
+
+          nix = {
+            enable = true;
+            lsp.servers = [
+              "nil"
+              "nixd"
+            ];
+            format.type = [ "nixfmt" ];
+          };
+          ruby.enable = true;
+        };
+
+        autocomplete.nvim-cmp.enable = true;
+        snippets.luasnip.enable = true;
+
+        git.enable = true;
+
+        telescope.enable = true;
+
+        utility = {
+          yazi-nvim.enable = true;
+          motion.flash-nvim.enable = true;
+        };
+
+        filetree.neo-tree.enable = true;
+
+        autopairs.nvim-autopairs.enable = true;
+
+        statusline.lualine.enable = true;
+
+        binds.whichKey.enable = true;
+
+        keymaps = [
+          {
+            key = "<leader>?";
+            mode = "n";
+            action = '':lua require("which-key").show()<cr>'';
+          }
+        ];
+
+        luaConfigPost = /* lua */ ''
+          vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        '';
       };
     };
+  };
 }
