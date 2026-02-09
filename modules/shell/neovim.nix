@@ -36,7 +36,10 @@
             enableTreesitter = true;
             enableFormat = true;
 
-            nix.enable = true;
+            nix = {
+              enable = true;
+              format.type = "nixfmt";
+            };
             ruby.enable = true;
           };
 
