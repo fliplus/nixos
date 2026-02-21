@@ -13,8 +13,8 @@
       settings.vim = {
         theme = {
           enable = true;
-          name = "gruvbox";
-          style = "dark";
+          name = "rose-pine";
+          style = "main";
         };
 
         options = {
@@ -24,6 +24,8 @@
           scrolloff = 8;
 
           colorcolumn = "120";
+
+          wrap = false;
         };
 
         lsp = {
@@ -44,6 +46,7 @@
             format.type = [ "nixfmt" ];
           };
           ruby.enable = true;
+          ts.enable = true;
         };
 
         autocomplete.nvim-cmp.enable = true;
@@ -58,19 +61,37 @@
           motion.flash-nvim.enable = true;
         };
 
-        filetree.neo-tree.enable = true;
+        filetree.neo-tree = {
+          enable = true;
+          setupOpts = {
+            window.position = "right";
+          };
+        };
 
         autopairs.nvim-autopairs.enable = true;
 
         statusline.lualine.enable = true;
 
-        binds.whichKey.enable = true;
+        binds = {
+          whichKey.enable = true;
+          cheatsheet.enable = true;
+        };
 
         keymaps = [
           {
+            key = "<leader>/";
+            mode = "n";
+            action = ":Cheatsheet<cr>";
+          }
+          {
             key = "<leader>?";
             mode = "n";
-            action = '':lua require("which-key").show()<cr>'';
+            action = ":WhichKey<cr>";
+          }
+          {
+            key = "<leader>e";
+            mode = "n";
+            action = ":Neotree toggle<cr>";
           }
         ];
 

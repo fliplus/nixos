@@ -25,6 +25,8 @@
           timeout = null;
         };
 
+        supportedFilesystems = [ "ntfs" ];
+
         kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
         kernelParams = lib.forEach config.preferences.monitors (

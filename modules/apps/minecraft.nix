@@ -4,7 +4,10 @@
     {
       environment.systemPackages = with pkgs; [
         (prismlauncher.override {
-          jdks = [ javaPackages.compiler.temurin-bin.jdk-25 ];
+          jdks = [
+            javaPackages.compiler.temurin-bin.jdk-8
+            javaPackages.compiler.temurin-bin.jdk-25
+          ];
         })
         packwiz
       ];
