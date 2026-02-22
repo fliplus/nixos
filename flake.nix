@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri.url = "github:niri-wm/niri";
+    niri.url = "github:niri-wm/niri/wip/branch";
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";

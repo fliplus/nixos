@@ -8,6 +8,7 @@
     {
       environment.systemPackages = with pkgs; [
         inputs.noctalia.packages.${stdenv.hostPlatform.system}.default
+        gpu-screen-recorder
       ];
 
       hjem.users.${user} = {
@@ -17,7 +18,7 @@
           ];
 
           binds = {
-            "Mod+S".spawn = [
+            "Mod+Space".spawn = [
               "noctalia-shell"
               "ipc"
               "call"

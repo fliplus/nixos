@@ -60,6 +60,13 @@
               xcursor-size 24
           }
 
+          blur {
+              passes 3
+              offset 3.0
+              noise 0.02
+              saturation 1.5
+          }
+
           layout {
               gaps 8
 
@@ -81,6 +88,10 @@
           window-rule {
               geometry-corner-radius 12
               clip-to-geometry true
+
+              background-effect {
+                  blur true
+              }
           }
 
           hotkey-overlay {
@@ -208,9 +219,9 @@
 
           "Mod+W".action = "toggle-column-tabbed-display";
 
-          "Print".action = "screenshot";
-          "Ctrl+Print".action = "screenshot-screen";
-          "Alt+Print".action = "screenshot-window";
+          "Mod+S".action = "screenshot show-pointer=false";
+          "Mod+Shift+S".action = "screenshot-window show-pointer=false";
+          "Mod+Ctrl+S".action = "screenshot-screen show-pointer=false";
 
           "Mod+Escape" = {
             action = "toggle-keyboard-shortcuts-inhibit";

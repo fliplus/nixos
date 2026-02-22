@@ -23,6 +23,20 @@
       ]
     ];
 
+    preferences.binds = [
+      {
+        hotkey = [
+          "Mod"
+          "Shift"
+          "Space"
+        ];
+        command = [
+          "1password"
+          "--quick-access"
+        ];
+      }
+    ];
+
     preferences.persist.home.directories = [
       ".config/1Password"
     ];
