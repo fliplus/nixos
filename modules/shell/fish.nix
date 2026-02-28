@@ -8,7 +8,7 @@
       '';
     };
 
-    documentation.man.generateCaches = false;
+    documentation.man.cache.enable = false;
 
     preferences.persist.home.files = [ ".local/share/fish/fish_history" ];
   };
