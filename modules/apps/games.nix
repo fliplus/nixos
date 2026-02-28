@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
     { pkgs, ... }:
@@ -6,6 +7,7 @@
 
       programs.steam = {
         enable = true;
+        package = inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraCompatPackages = with pkgs; [
           proton-ge-bin
         ];
@@ -18,6 +20,9 @@
 
       preferences.persist.home.directories = [
         ".local/share/Steam"
+        ".steam"
+        ".config/millennium"
+        ".local/share/millennium"
 
         ".config/heroic"
 

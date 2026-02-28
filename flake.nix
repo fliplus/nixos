@@ -49,6 +49,8 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
+
+    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
   };
 
   outputs =
