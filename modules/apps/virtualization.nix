@@ -5,15 +5,38 @@
       inherit (config.preferences.system) user;
     in
     {
-      virtualisation.libvirtd = {
-        enable = true;
-        qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+      virtualisation = {
+        libvirtd = {
+          enable = true;
+          qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+        };
+
+        spiceUSBRedirection.enable = true;
+
+        docker.enable = true;
       };
 
       programs.virt-manager.enable = true;
 
-      users.users.${user}.extraGroups = [ "libvirtd" ];
+      environment.systemPackages = with pkgs; [
+        winboat
+      ];
 
-      preferences.persist.root.directories = [ "/var/lib/libvirt/" ];
+      users.users.${user}.extraGroups = [
+        "libvirtd"
+        "docker"
+      ];
+
+      preferences.persist = {
+        root.directories = [
+          "/var/lib/libvirt"
+          "/var/lib/docker"
+        ];
+        home.directories = [
+          ".winboat"
+          "winboat"
+          ".config/winboat"
+        ];
+      };
     };
 }
