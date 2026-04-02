@@ -25,6 +25,14 @@
               "launcher"
               "toggle"
             ];
+
+            "Mod+G".spawn = [
+              "noctalia-shell"
+              "ipc"
+              "call"
+              "bar"
+              "toggle"
+            ];
           };
 
           config = ''

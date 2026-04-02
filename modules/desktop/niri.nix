@@ -11,8 +11,6 @@
         package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
       };
 
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
       hjem.users.${user}.rum.desktops.niri = {
         enable = true;
 
@@ -20,6 +18,10 @@
 
         config = ''
           prefer-no-csd
+
+          environment {
+              NIXOS_OZONE_WL "1"
+          }
 
           ${lib.concatStringsSep "\n" (
             map (monitor: ''
@@ -50,14 +52,14 @@
           }
 
           gestures {
-            hot-corners {
-                off
-            }
+              hot-corners {
+                  off
+              }
           }
 
           cursor {
-              xcursor-theme "Breeze_Light"
-              xcursor-size 24
+              xcursor-theme "${config.environment.sessionVariables.XCURSOR_THEME}"
+              xcursor-size ${config.environment.sessionVariables.XCURSOR_SIZE}
           }
 
           blur {
@@ -108,27 +110,31 @@
 
           "Mod+O" = {
             action = "toggle-overview";
-            parameters = {
-              repeat = false;
-            };
+            parameters.repeat = false;
           };
 
           "Mod+Q" = {
             action = "close-window";
-            parameters = {
-              repeat = false;
-            };
+            parameters.repeat = false;
+          };
+          "Mod+Shift+Q" = {
+            spawn = [
+              "sh"
+              "-c"
+              "kill $(niri msg focused-window | awk '/PID:/ {print $2}')"
+            ];
+            parameters.repeat = false;
           };
 
-          "Mod+H".action = "focus-column-left";
+          "Mod+H".action = "focus-column-or-monitor-left";
           "Mod+J".action = "focus-window-or-workspace-down";
           "Mod+K".action = "focus-window-or-workspace-up";
-          "Mod+L".action = "focus-column-right";
+          "Mod+L".action = "focus-column-or-monitor-right";
 
-          "Mod+Shift+H".action = "move-column-left";
+          "Mod+Shift+H".action = "move-column-left-or-to-monitor-left";
           "Mod+Shift+J".action = "move-window-down-or-to-workspace-down";
           "Mod+Shift+K".action = "move-window-up-or-to-workspace-up";
-          "Mod+Shift+L".action = "move-column-right";
+          "Mod+Shift+L".action = "move-column-right-or-to-monitor-right";
 
           "Mod+U".action = "focus-monitor-left";
           "Mod+I".action = "focus-monitor-right";
@@ -138,27 +144,19 @@
 
           "Mod+WheelScrollDown" = {
             action = "focus-workspace-down";
-            parameters = {
-              cooldown-ms = 150;
-            };
+            parameters.cooldown-ms = 150;
           };
           "Mod+WheelScrollUp" = {
             action = "focus-workspace-up";
-            parameters = {
-              cooldown-ms = 150;
-            };
+            parameters.cooldown-ms = 150;
           };
           "Mod+Ctrl+WheelScrollDown" = {
             action = "move-column-to-workspace-down";
-            parameters = {
-              cooldown-ms = 150;
-            };
+            parameters.cooldown-ms = 150;
           };
           "Mod+Ctrl+WheelScrollUp" = {
             action = "move-column-to-workspace-up";
-            parameters = {
-              cooldown-ms = 150;
-            };
+            parameters.cooldown-ms = 150;
           };
 
           "Mod+WheelScrollRight".action = "focus-column-right";
@@ -225,9 +223,7 @@
 
           "Mod+Escape" = {
             action = "toggle-keyboard-shortcuts-inhibit";
-            parameters = {
-              allow-inhibiting = false;
-            };
+            parameters.allow-inhibiting = false;
           };
 
           "Ctrl+Alt+Delete".action = "quit";
