@@ -8,7 +8,7 @@
       environment.systemPackages = with pkgs; [
         kdePackages.breeze
         adw-gtk3
-        papirus-icon-theme
+        colloid-icon-theme
       ];
 
       environment.sessionVariables = {
@@ -29,7 +29,7 @@
                 color-scheme = "prefer-dark";
                 cursor-theme = "Breeze_Light";
                 gtk-theme = "adw-gtk3-dark";
-                icon-theme = "Papirus-Dark";
+                icon-theme = "Colloid-Dark";
               };
             };
           }
