@@ -97,6 +97,10 @@
                   description = "Y position of the display";
                   type = lib.types.int;
                 };
+                workspaces = lib.mkOption {
+                  description = "Workspaces assigned to the display";
+                  type = lib.types.listOf lib.types.int;
+                };
               };
             }
           );

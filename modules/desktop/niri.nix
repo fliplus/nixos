@@ -4,6 +4,9 @@
     { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
+
+      forEachWorkspace =
+        f: lib.concatMap (m: lib.concatMap (ws: f m ws) m.workspaces) config.preferences.monitors;
     in
     {
       programs.niri = {
@@ -30,6 +33,18 @@
                   position x=${toString monitor.x} y=${toString monitor.y}
               }
             '') config.preferences.monitors
+          )}
+
+          ${lib.concatStringsSep "\n" (
+            forEachWorkspace (
+              monitor: workspace: [
+                ''
+                  workspace "${toString workspace}" {
+                      open-on-output "${monitor.name}"
+                  }
+                ''
+              ]
+            )
           )}
 
           input {
@@ -169,26 +184,6 @@
           "Mod+Ctrl+Shift+WheelScrollDown".action = "move-column-right";
           "Mod+Ctrl+Shift+WheelScrollUp".action = "move-column-left";
 
-          "Mod+1".action = "focus-workspace 1";
-          "Mod+2".action = "focus-workspace 2";
-          "Mod+3".action = "focus-workspace 3";
-          "Mod+4".action = "focus-workspace 4";
-          "Mod+5".action = "focus-workspace 5";
-          "Mod+6".action = "focus-workspace 6";
-          "Mod+7".action = "focus-workspace 7";
-          "Mod+8".action = "focus-workspace 8";
-          "Mod+9".action = "focus-workspace 9";
-
-          "Mod+Shift+1".action = "move-window-to-workspace 1";
-          "Mod+Shift+2".action = "move-window-to-workspace 2";
-          "Mod+Shift+3".action = "move-window-to-workspace 3";
-          "Mod+Shift+4".action = "move-window-to-workspace 4";
-          "Mod+Shift+5".action = "move-window-to-workspace 5";
-          "Mod+Shift+6".action = "move-window-to-workspace 6";
-          "Mod+Shift+7".action = "move-window-to-workspace 7";
-          "Mod+Shift+8".action = "move-window-to-workspace 8";
-          "Mod+Shift+9".action = "move-window-to-workspace 9";
-
           "Mod+Tab".action = "focus-workspace-previous";
 
           "Mod+BracketLeft".action = "consume-or-expel-window-left";
@@ -230,6 +225,20 @@
 
           "Mod+Shift+P".action = "power-off-monitors";
         }
+        // lib.listToAttrs (
+          forEachWorkspace (
+            monitor: workspace: [
+              {
+                name = "Mod+${toString workspace}";
+                value.action = ''focus-workspace "${toString workspace}"'';
+              }
+              {
+                name = "Mod+Shift+${toString workspace}";
+                value.action = ''move-window-to-workspace "${toString workspace}"'';
+              }
+            ]
+          )
+        )
         // lib.listToAttrs (
           map (bind: {
             name = lib.concatStringsSep "+" bind.hotkey;

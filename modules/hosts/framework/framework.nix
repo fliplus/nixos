@@ -14,6 +14,17 @@ top: {
         refreshRate = 165.000;
         x = 0;
         y = 0;
+        workspaces = [
+          1
+          2
+          3
+          4
+          5
+          6
+          7
+          8
+          9
+        ];
       }
     ];
 

@@ -9,6 +9,14 @@
         refreshRate = 239.757;
         x = 0;
         y = 0;
+        workspaces = [
+          1
+          2
+          3
+          4
+          5
+          6
+        ];
       }
       {
         name = "DP-3";
@@ -16,6 +24,11 @@
         refreshRate = 144.001;
         x = 1920;
         y = 0;
+        workspaces = [
+          7
+          8
+          9
+        ];
       }
     ];
 
