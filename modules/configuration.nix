@@ -1,6 +1,6 @@
 {
   flake.nixosModules.core =
-    { config, pkgs, ... }:
+    { config, ... }:
     let
       inherit (config.preferences.system) host;
     in
@@ -15,10 +15,6 @@
       time.timeZone = "Europe/Lisbon";
 
       i18n.defaultLocale = "en_US.UTF-8";
-
-      environment.systemPackages = with pkgs; [
-        hyprlauncher
-      ];
 
       programs.git = {
         enable = true;

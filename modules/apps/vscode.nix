@@ -1,23 +1,10 @@
-{ inputs, ... }:
 {
   flake.nixosModules.core =
     { pkgs, ... }:
     {
-      programs.vscode = {
-        enable = true;
-
-        extensions =
-          with pkgs.vscode-extensions;
-          [
-            vscodevim.vim
-            bbenoist.nix
-            jdinhlife.gruvbox
-            tamasfe.even-better-toml
-          ]
-          ++ [
-            inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.open-vsx.federicocarboni.scarpet-ls
-          ];
-      };
+      environment.systemPackages = with pkgs; [
+        vscode.fhs
+      ];
 
       preferences.persist.home.directories = [
         ".vscode"

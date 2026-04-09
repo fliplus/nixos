@@ -105,6 +105,7 @@
           window-rule {
               geometry-corner-radius 12
               clip-to-geometry true
+              draw-border-with-background false
 
               background-effect {
                   blur true
