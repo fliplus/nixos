@@ -14,8 +14,13 @@
         ];
       };
 
+      nixpkgs.config.permittedInsecurePackages = [
+        "nexusmods-app-unfree-0.21.1"
+      ];
+
       environment.systemPackages = with pkgs; [
         heroic
+        nexusmods-app-unfree
         cemu
       ];
 
@@ -26,6 +31,8 @@
         ".local/share/millennium"
 
         ".config/heroic"
+
+        ".local/share/NexusMods.App"
 
         ".config/Cemu"
         ".local/share/Cemu"
