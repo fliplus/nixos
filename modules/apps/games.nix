@@ -20,8 +20,9 @@
 
       environment.systemPackages = with pkgs; [
         heroic
-        nexusmods-app-unfree
         cemu
+        nexusmods-app-unfree
+        gale
       ];
 
       preferences.persist.home.directories = [
@@ -31,13 +32,15 @@
         ".local/share/millennium"
 
         ".config/heroic"
-
-        ".local/share/NexusMods.App"
+        "Games"
 
         ".config/Cemu"
         ".local/share/Cemu"
 
-        "Games"
+        ".local/share/NexusMods.App"
+
+        ".local/share/gale"
+        ".local/share/com.kesomannen.gale"
       ];
     };
 }
