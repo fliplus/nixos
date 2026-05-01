@@ -4,6 +4,7 @@
     {
       environment.systemPackages = with pkgs; [
         claude-code
+        sox
       ];
 
       preferences.persist.home = {

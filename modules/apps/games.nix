@@ -41,6 +41,8 @@
 
         ".local/share/gale"
         ".local/share/com.kesomannen.gale"
+
+        ".local/share/Terraria"
       ];
     };
 }

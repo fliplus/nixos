@@ -5,14 +5,13 @@
     let
       inherit (config.preferences.system) user;
 
+      toggleGapsScript = pkgs.writeShellScriptBin "niri-toggle-gaps" (builtins.readFile ./niri-toggle-gaps.sh);
+
       forEachWorkspace =
         f: lib.concatMap (m: lib.concatMap (ws: f m ws) m.workspaces) config.preferences.monitors;
     in
     {
-      programs.niri = {
-        enable = true;
-        package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      };
+      programs.niri.enable = true;
 
       hjem.users.${user}.rum.desktops.niri = {
         enable = true;
@@ -119,6 +118,8 @@
           xwayland-satellite {
               path "${lib.getExe pkgs.xwayland-satellite}"
           }
+
+          include optional=true "~/.config/niri/toggles/gaps.kdl"
         '';
 
         binds = {
@@ -225,6 +226,11 @@
           "Ctrl+Alt+Delete".action = "quit";
 
           "Mod+Shift+P".action = "power-off-monitors";
+
+          "Mod+Shift+G" = {
+            spawn = [ (lib.getExe toggleGapsScript) ];
+            parameters.repeat = false;
+          };
         }
         // lib.listToAttrs (
           forEachWorkspace (
