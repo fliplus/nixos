@@ -46,7 +46,7 @@
             format.type = [ "nixfmt" ];
           };
           ruby.enable = true;
-          ts.enable = true;
+          typescript.enable = true;
         };
 
         autocomplete.nvim-cmp.enable = true;
