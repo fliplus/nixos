@@ -30,7 +30,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/legacy-v4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -45,7 +45,7 @@
 
     hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
 
-    millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    millennium.url = "github:SteamClientHomebrew/Millennium/next?dir=packages/nix";
   };
 
   outputs =

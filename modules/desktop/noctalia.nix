@@ -33,6 +33,14 @@
               "bar"
               "toggle"
             ];
+
+            "Mod+Shift+C".spawn = [
+              "noctalia-shell"
+              "ipc"
+              "call"
+              "plugin:screen-recorder"
+              "saveReplay"
+            ];
           };
 
           config = ''

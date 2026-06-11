@@ -27,7 +27,7 @@
 
         supportedFilesystems = [ "ntfs" ];
 
-        kernelPackages = pkgs.linuxPackages_xanmod;
+        kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
         kernelParams = lib.forEach config.preferences.monitors (
           monitor:

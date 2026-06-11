@@ -41,6 +41,7 @@
           "dev"
           "Downloads"
           "Pictures"
+          "Videos"
         ];
       };
     };

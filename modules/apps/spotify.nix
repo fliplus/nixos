@@ -11,6 +11,11 @@
       programs.spicetify = {
         enable = true;
 
+        theme = {
+          name = "marketplace";
+          src = pkgs.runCommand "marketplace-theme-src" { } "mkdir $out";
+        };
+
         enabledCustomApps = with spicePkgs.apps; [
           marketplace
         ];

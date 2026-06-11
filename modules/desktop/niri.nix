@@ -1,11 +1,13 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 {
   flake.nixosModules.core =
     { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
 
-      toggleGapsScript = pkgs.writeShellScriptBin "niri-toggle-gaps" (builtins.readFile ./niri-toggle-gaps.sh);
+      toggleGapsScript = pkgs.writeShellScriptBin "niri-toggle-gaps" (
+        builtins.readFile ./niri-toggle-gaps.sh
+      );
 
       forEachWorkspace =
         f: lib.concatMap (m: lib.concatMap (ws: f m ws) m.workspaces) config.preferences.monitors;
