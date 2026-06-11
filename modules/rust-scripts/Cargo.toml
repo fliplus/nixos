@@ -1,0 +1,9 @@
+[package]
+name = "rust-scripts"
+edition = "2024"
+
+[[bin]]
+name = "persist-list-leftovers"
+path = "src/persist-list-leftovers.rs"
+
+[dependencies]

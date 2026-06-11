@@ -48,5 +48,17 @@
       };
 
       security.sudo.extraConfig = "Defaults lecture=never";
+
+      environment.systemPackages = [
+        (pkgs.writeShellScriptBin "persist-list" ''
+          echo "${builtins.concatStringsSep "\n" (builtins.map (d: d + "/") persist.root.directories)}" | sort
+          echo
+          echo "${builtins.concatStringsSep "\n" persist.root.files}" | sort
+          echo
+          echo "${builtins.concatStringsSep "\n" (builtins.map (d: "/home/${user}/" + d + "/") persist.home.directories)}" | sort
+          echo
+          echo "${builtins.concatStringsSep "\n" (builtins.map (f: "/home/${user}/" + f) persist.home.files)}" | sort
+        '')
+      ];
     };
 }

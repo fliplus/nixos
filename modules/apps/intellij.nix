@@ -11,7 +11,7 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".cache/JetBrains"
-        ".java/.userPrefs/"
+        ".java/.userPrefs"
         ".gradle"
       ];
     };
