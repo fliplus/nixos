@@ -2,7 +2,6 @@ top: {
   flake.nixosModules.host-framework = {
     imports = with top.config.flake.nixosModules; [
       quartus
-      wireshark
     ];
 
     networking.hostId = "c915d58c";
