@@ -45,8 +45,27 @@
             ];
             format.type = [ "nixfmt" ];
           };
-          ruby.enable = true;
+
+          ruby = {
+            enable = true;
+            lsp.servers = [ "ruby-lsp" ];
+          };
+          html.enable = true;
           typescript.enable = true;
+
+          rust.enable = true;
+
+          kotlin = {
+            enable = true;
+            lsp.enable = false;
+          };
+
+          assembly.enable = true;
+
+          qml = {
+            enable = true;
+            lsp.enable = false;
+          };
         };
 
         autocomplete.nvim-cmp.enable = true;

@@ -3,7 +3,9 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
-        (jetbrains.idea.override { forceWayland = true; })
+        jetbrains.idea
+        jetbrains.ruby-mine
+
         javaPackages.compiler.temurin-bin.jdk-25
       ];
 
@@ -11,6 +13,7 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".cache/JetBrains"
+
         ".java/.userPrefs"
         ".gradle"
       ];

@@ -1,11 +1,12 @@
 {
   flake.nixosModules.core =
-    { config, ... }:
+    { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
     in
     {
       nix = {
+        package = pkgs.lixPackageSets.latest.lix;
         settings = {
           warn-dirty = false;
           experimental-features = [
