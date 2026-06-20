@@ -5,7 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
 
     disko = {
       url = "github:nix-community/disko";
@@ -18,10 +17,13 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hjem.follows = "hjem";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hjem.follows = "hjem";
+      };
     };
 
     nvf = {
@@ -42,16 +44,17 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-
-    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
-
     millennium.url = "github:SteamClientHomebrew/Millennium/next?dir=packages/nix";
   };
 
   outputs =
     inputs:
+    let
+      inherit (inputs.nixpkgs.lib.fileset) toList fileFilter;
+      import-tree = path: toList (fileFilter (file: file.hasExt "nix") path);
+    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
-      imports = [ (inputs.import-tree ./modules) ];
+      imports = import-tree ./modules;
     };
 }

@@ -10,10 +10,22 @@
             javaPackages.compiler.temurin-bin.jdk-21
             javaPackages.compiler.temurin-bin.jdk-25
           ];
+
+          additionalLibs = [
+            libxtst
+            libxkbcommon
+            libxt
+            libxinerama
+          ];
         })
+
+        waywall
         packwiz
       ];
 
-      preferences.persist.home.directories = [ ".local/share/PrismLauncher" ];
+      preferences.persist.home.directories = [
+        ".local/share/PrismLauncher"
+        ".config/waywall"
+      ];
     };
 }
