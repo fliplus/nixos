@@ -6,40 +6,34 @@
       inherit (config.preferences.system) user;
     in
     {
+      nix.settings = {
+        extra-substituters = [ "https://noctalia.cachix.org" ];
+        extra-trusted-public-keys = [
+          "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+        ];
+      };
+
+      imports = [
+        inputs.noctalia.nixosModules.default
+      ];
+
+      programs.noctalia = {
+        enable = true;
+        systemd.enable = true;
+      };
+
       environment.systemPackages = with pkgs; [
-        inputs.noctalia.packages.${stdenv.hostPlatform.system}.default
         gpu-screen-recorder
       ];
 
       hjem.users.${user} = {
         rum.desktops.niri = {
-          spawn-at-startup = [
-            [ "noctalia-shell" ]
-          ];
-
           binds = {
             "Mod+Space".spawn = [
-              "noctalia-shell"
-              "ipc"
-              "call"
+              "noctalia"
+              "msg"
+              "panel-toggle"
               "launcher"
-              "toggle"
-            ];
-
-            "Mod+G".spawn = [
-              "noctalia-shell"
-              "ipc"
-              "call"
-              "bar"
-              "toggle"
-            ];
-
-            "Mod+Shift+C".spawn = [
-              "noctalia-shell"
-              "ipc"
-              "call"
-              "plugin:screen-recorder"
-              "saveReplay"
             ];
           };
 
@@ -47,8 +41,12 @@
             include optional=true "/home/flip/.config/niri/noctalia.kdl"
 
             layer-rule {
-                match namespace="^noctalia-overview*"
+                match namespace="^noctalia-backdrop"
                 place-within-backdrop true
+            }
+
+            debug {
+                honor-xdg-activation-with-invalid-serial
             }
           '';
         };
@@ -60,6 +58,7 @@
 
       preferences.persist.home.directories = [
         ".config/noctalia"
+        ".local/state/noctalia"
         ".cache/noctalia"
 
         ".config/niri"
