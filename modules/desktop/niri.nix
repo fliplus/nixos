@@ -9,6 +9,10 @@
         builtins.readFile ./niri-toggle-gaps.sh
       );
 
+      pauseWindowScript = pkgs.writeShellScriptBin "niri-pause-window" (
+        builtins.readFile ./niri-pause-window.sh
+      );
+
       forEachWorkspace =
         f: lib.concatMap (m: lib.concatMap (ws: f m ws) m.workspaces) config.preferences.monitors;
     in
@@ -73,18 +77,6 @@
               }
           }
 
-          cursor {
-              xcursor-theme "${config.environment.sessionVariables.XCURSOR_THEME}"
-              xcursor-size ${config.environment.sessionVariables.XCURSOR_SIZE}
-          }
-
-          blur {
-              passes 3
-              offset 3.0
-              noise 0.02
-              saturation 1.5
-          }
-
           layout {
               gaps 8
 
@@ -140,8 +132,12 @@
             spawn = [
               "sh"
               "-c"
-              "kill $(niri msg focused-window | awk '/PID:/ {print $2}')"
+              "kill -9 $(niri msg focused-window | awk '/PID:/ {print $2}')"
             ];
+            parameters.repeat = false;
+          };
+          "Mod+Ctrl+X" = {
+            spawn = [ (lib.getExe pauseWindowScript) ];
             parameters.repeat = false;
           };
 
