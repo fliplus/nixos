@@ -13,6 +13,8 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +22,8 @@
 
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        hjem.follows = "hjem";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hjem.follows = "hjem";
     };
 
     nvf = {

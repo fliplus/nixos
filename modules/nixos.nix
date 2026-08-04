@@ -24,6 +24,8 @@ let
         { flake.diskoConfigurations = config.flake.nixosModules."disko-${host}"; }
         config.flake.nixosModules."disko-${host}"
 
+        inputs.chaotic.nixosModules.default
+
         config.flake.nixosModules."host-${host}"
 
         config.flake.nixosModules.core

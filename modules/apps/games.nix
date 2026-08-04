@@ -24,7 +24,7 @@
         enable = true;
         package = inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.default;
         extraCompatPackages = with pkgs; [
-          proton-ge-bin
+          proton-cachyos
         ];
       };
 

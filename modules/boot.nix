@@ -27,7 +27,7 @@
 
         supportedFilesystems = [ "ntfs" ];
 
-        kernelPackages = pkgs.linuxPackages_xanmod_latest;
+        kernelPackages = pkgs.linuxPackages_cachyos;
 
         kernelParams = lib.forEach config.preferences.monitors (
           monitor:
@@ -36,7 +36,7 @@
           }"
         );
 
-        zfs.package = pkgs.zfs_unstable;
+        zfs.package = pkgs.zfs_cachyos;
 
         plymouth = {
           enable = true;
