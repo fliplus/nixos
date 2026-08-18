@@ -1,9 +1,13 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   flake.nixosModules.core =
     { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
+
+      barSmartToggleScript = pkgs.writeShellScriptBin "noctalia-bar-smart-toggle" (
+        builtins.readFile ./noctalia-bar-smart-toggle.sh
+      );
     in
     {
       nix.settings = {
@@ -35,6 +39,17 @@
               "panel-toggle"
               "launcher"
             ];
+
+            "Mod+G".spawn = [
+              "noctalia"
+              "msg"
+              "bar-toggle"
+            ];
+
+            "Mod+Ctrl+G" = {
+              spawn = [ (lib.getExe barSmartToggleScript) ];
+              parameters.repeat = false;
+            };
           };
 
           config = ''
