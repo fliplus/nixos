@@ -6,7 +6,7 @@
       inherit (config.preferences.system) user;
     in
     {
-      # supress mutiple password options warning
+      # suppress multiple password options warning
       options.warnings = lib.mkOption {
         apply = lib.filter (
           warning: !(lib.hasInfix "If multiple of these password options are set at the same time" warning)

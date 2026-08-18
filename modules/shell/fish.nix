@@ -33,12 +33,10 @@
       flags = [ "--cmd cd" ];
     };
 
-    preferences.persist.home.files = [
-      ".local/share/fish/fish_history"
-    ];
+    preferences.persist.home = {
+      directories = [ ".local/share/zoxide" ];
 
-    preferences.persist.home.directories = [
-      ".local/share/zoxide"
-    ];
+      files = [ ".local/share/fish/fish_history" ];
+    };
   };
 }

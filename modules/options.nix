@@ -120,6 +120,11 @@
                   description = "Command to execute";
                   type = lib.types.listOf lib.types.str;
                 };
+                repeat = lib.mkOption {
+                  description = "Whether the command should repeat while the hotkey is held";
+                  type = lib.types.bool;
+                  default = true;
+                };
               };
             }
           );

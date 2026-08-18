@@ -26,9 +26,10 @@
         sessionData.autologinSession = "niri";
       };
 
-      preferences = {
-        persist.root.files = [ "/etc/ly/save.txt" ];
-        persist.home.directories = [ ".ssh" ];
+      preferences.persist = {
+        root.files = [ "/etc/ly/save.txt" ];
+
+        home.directories = [ ".ssh" ];
       };
     };
 }

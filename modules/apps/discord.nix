@@ -37,8 +37,6 @@
         }
       ];
 
-      preferences.persist.home.directories = [
-        ".config/equibop"
-      ];
+      preferences.persist.home.directories = [ ".config/equibop" ];
     };
 }

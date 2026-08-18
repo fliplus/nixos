@@ -17,8 +17,6 @@
         SALT_LICENSE_SERVER = "/home/${user}/.altera.quartus/questa_lic.dat";
       };
 
-      preferences.persist.home.directories = [
-        ".altera.quartus"
-      ];
+      preferences.persist.home.directories = [ ".altera.quartus" ];
     };
 }

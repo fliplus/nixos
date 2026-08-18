@@ -10,8 +10,6 @@
         })
       ];
 
-      preferences.persist.home.directories = [
-        ".config/obs-studio"
-      ];
+      preferences.persist.home.directories = [ ".config/obs-studio" ];
     };
 }

@@ -6,8 +6,6 @@
         thunderbird
       ];
 
-      preferences.persist.home.directories = [
-        ".thunderbird"
-      ];
+      preferences.persist.home.directories = [ ".thunderbird" ];
     };
 }

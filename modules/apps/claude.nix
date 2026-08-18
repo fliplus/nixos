@@ -8,12 +8,9 @@
       ];
 
       preferences.persist.home = {
-        directories = [
-          ".claude"
-        ];
-        files = [
-          ".claude.json"
-        ];
+        directories = [ ".claude" ];
+
+        files = [ ".claude.json" ];
       };
     };
 }

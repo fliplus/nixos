@@ -27,22 +27,20 @@
         };
       };
 
-      services.openssh.enable = true;
-
       programs.nano.enable = false;
 
-      preferences.persist.root = {
-        directories = [
-          "/var/lib/nixos"
-          "/etc/NetworkManager/system-connections"
-        ];
+      preferences.persist = {
+        root = {
+          directories = [
+            "/var/lib/nixos"
+            "/etc/NetworkManager/system-connections"
+          ];
 
-        files = [ "/etc/machine-id" ];
+          files = [ "/etc/machine-id" ];
+        };
+
+        home.directories = [ "nixos" ];
       };
-
-      preferences.persist.home.directories = [
-        "nixos"
-      ];
 
       system.stateVersion = "26.11";
     };

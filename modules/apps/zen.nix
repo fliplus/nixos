@@ -26,8 +26,6 @@
         }
       ];
 
-      preferences.persist.home.directories = [
-        ".zen"
-      ];
+      preferences.persist.home.directories = [ ".zen" ];
     };
 }

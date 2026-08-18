@@ -8,8 +8,6 @@
         trash-cli
       ];
 
-      preferences.persist.home.directories = [
-        ".local/share/Trash"
-      ];
+      preferences.persist.home.directories = [ ".local/share/Trash" ];
     };
 }

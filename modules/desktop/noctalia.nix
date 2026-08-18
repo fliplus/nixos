@@ -10,18 +10,14 @@
       );
     in
     {
+      imports = [ inputs.noctalia.nixosModules.default ];
+
       nix.settings = {
         extra-substituters = [ "https://noctalia.cachix.org" ];
         extra-trusted-public-keys = [
           "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
       };
-
-      imports = [
-        inputs.noctalia.nixosModules.default
-      ];
-
-      hjem.extraModules = [ inputs.noctalia.hjemModules.default ];
 
       programs.noctalia = {
         enable = true;
@@ -31,6 +27,8 @@
       environment.systemPackages = with pkgs; [
         gpu-screen-recorder
       ];
+
+      hjem.extraModules = [ inputs.noctalia.hjemModules.default ];
 
       hjem.users.${user} = {
         programs.noctalia = {
@@ -132,53 +130,63 @@
           };
         };
 
-        rum.desktops.niri = {
-          binds = {
-            "Mod+Space".spawn = [
-              "noctalia"
-              "msg"
-              "panel-toggle"
-              "launcher"
-            ];
+        rum.desktops.niri.config = ''
+          include optional=true "/home/${user}/.config/niri/noctalia.kdl"
 
-            "Mod+G".spawn = [
-              "noctalia"
-              "msg"
-              "bar-toggle"
-            ];
+          layer-rule {
+              match namespace="^noctalia-backdrop"
+              place-within-backdrop true
+          }
 
-            "Mod+Ctrl+G" = {
-              spawn = [ (lib.getExe barSmartToggleScript) ];
-              parameters.repeat = false;
-            };
-          };
-
-          config = ''
-            include optional=true "/home/flip/.config/niri/noctalia.kdl"
-
-            layer-rule {
-                match namespace="^noctalia-backdrop"
-                place-within-backdrop true
-            }
-
-            debug {
-                honor-xdg-activation-with-invalid-serial
-            }
-          '';
-        };
+          debug {
+              honor-xdg-activation-with-invalid-serial
+          }
+        '';
 
         xdg.config.files."ghostty/config" = {
           value.theme = "noctalia";
         };
       };
 
+      preferences.binds = [
+        {
+          hotkey = [
+            "Mod"
+            "Space"
+          ];
+          command = [
+            "noctalia"
+            "msg"
+            "panel-toggle"
+            "launcher"
+          ];
+        }
+        {
+          hotkey = [
+            "Mod"
+            "G"
+          ];
+          command = [
+            "noctalia"
+            "msg"
+            "bar-toggle"
+          ];
+        }
+        {
+          hotkey = [
+            "Mod"
+            "Ctrl"
+            "G"
+          ];
+          command = [ (lib.getExe barSmartToggleScript) ];
+          repeat = false;
+        }
+      ];
+
       preferences.persist.home.directories = [
         ".config/noctalia"
         ".local/state/noctalia"
         ".cache/noctalia"
-
-        ".config/niri"
-        ".config/ghostty"
       ];
     };
 }

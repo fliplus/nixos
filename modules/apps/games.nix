@@ -28,9 +28,7 @@
         ];
       };
 
-      nixpkgs.config.permittedInsecurePackages = [
-        "nexusmods-app-unfree-0.21.1"
-      ];
+      nixpkgs.config.permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
 
       environment.systemPackages = with pkgs; [
         heroic
@@ -39,27 +37,27 @@
         vintagestory
       ];
 
-      preferences.persist.root.directories = [
-        "/var/lib/tailscale"
-      ];
+      preferences.persist = {
+        root.directories = [ "/var/lib/tailscale" ];
 
-      preferences.persist.home.directories = [
-        ".local/share/Steam"
-        ".steam"
-        ".config/millennium"
-        ".local/share/millennium"
+        home.directories = [
+          ".local/share/Steam"
+          ".steam"
+          ".config/millennium"
+          ".local/share/millennium"
 
-        ".config/heroic"
-        "Games"
+          ".config/heroic"
+          "Games"
 
-        ".local/share/NexusMods.App"
+          ".local/share/NexusMods.App"
 
-        ".local/share/gale"
-        ".local/share/com.kesomannen.gale"
+          ".local/share/gale"
+          ".local/share/com.kesomannen.gale"
 
-        ".local/share/Terraria"
+          ".local/share/Terraria"
 
-        ".config/VintagestoryData"
-      ];
+          ".config/VintagestoryData"
+        ];
+      };
     };
 }
