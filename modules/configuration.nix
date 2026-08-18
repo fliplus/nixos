@@ -16,17 +16,6 @@
 
       i18n.defaultLocale = "en_US.UTF-8";
 
-      programs.git = {
-        enable = true;
-
-        config = {
-          user = {
-            name = "Filipe Abreu";
-            email = "134308239+fliplus@users.noreply.github.com";
-          };
-        };
-      };
-
       programs.nano.enable = false;
 
       preferences.persist = {
