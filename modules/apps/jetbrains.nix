@@ -28,13 +28,17 @@
         version: jdk: lib.nameValuePair ".jdks/temurin-${version}" { source = jdk; }
       ) jdks;
 
-      preferences.persist.home.directories = [
-        ".config/JetBrains"
-        ".local/share/JetBrains"
-        ".cache/JetBrains"
+      preferences.persist.home = {
+        directories = [
+          ".config/JetBrains"
+          ".local/share/JetBrains"
+          ".cache/JetBrains"
 
-        ".java/.userPrefs"
-        ".gradle"
-      ];
+          ".java/.userPrefs"
+          ".gradle"
+        ];
+
+        files = [ ".ideavimrc" ];
+      };
     };
 }
