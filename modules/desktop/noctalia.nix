@@ -99,8 +99,11 @@
             };
 
             theme.templates.builtin_ids = [
+              "gtk3"
+              "gtk4"
               "ghostty"
               "niri"
+              "qt"
             ];
 
             widget = {

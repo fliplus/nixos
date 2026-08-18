@@ -35,7 +35,5 @@
           command = [ "ghostty" ];
         }
       ];
-
-      preferences.persist.home.directories = [ ".config/ghostty" ];
     };
 }
