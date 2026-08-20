@@ -28,14 +28,14 @@
           prefer-no-csd
 
           environment {
-              NIXOS_OZONE_WL "1"
+            NIXOS_OZONE_WL "1"
           }
 
           ${lib.concatStringsSep "\n" (
             map (monitor: ''
               output "${monitor.name}" {
-                  mode "${monitor.resolution}@${toString monitor.refreshRate}"
-                  position x=${toString monitor.x} y=${toString monitor.y}
+                mode "${monitor.resolution}@${toString monitor.refreshRate}"
+                position x=${toString monitor.x} y=${toString monitor.y}
               }
             '') config.preferences.monitors
           )}
@@ -45,7 +45,7 @@
               monitor: workspace: [
                 ''
                   workspace "${toString workspace}" {
-                      open-on-output "${monitor.name}"
+                    open-on-output "${monitor.name}"
                   }
                 ''
               ]
@@ -53,64 +53,64 @@
           )}
 
           input {
-              keyboard {
-                  xkb {
-                      options "caps:super, compose:lwin"
-                  }
+            keyboard {
+              xkb {
+                options "caps:super, compose:lwin"
               }
+            }
 
-              mouse {
-                  accel-profile "flat"
-              }
+            mouse {
+              accel-profile "flat"
+            }
 
-              touchpad {
-                tap
-                natural-scroll
-              }
+            touchpad {
+              tap
+              natural-scroll
+            }
 
-              focus-follows-mouse max-scroll-amount="50%"
+            focus-follows-mouse max-scroll-amount="50%"
           }
 
           gestures {
-              hot-corners {
-                  off
-              }
+            hot-corners {
+              off
+            }
           }
 
           layout {
-              gaps 8
+            gaps 8
 
-              focus-ring {
-                  off
-              }
+            focus-ring {
+              off
+            }
 
-              border {
-                  width 2
-              }
+            border {
+              width 2
+            }
 
-              background-color "#000000"
+            background-color "#000000"
           }
 
           overview {
-              backdrop-color "#000000"
+            backdrop-color "#000000"
           }
 
           window-rule {
-              geometry-corner-radius 12
-              clip-to-geometry true
-              draw-border-with-background false
+            geometry-corner-radius 12
+            clip-to-geometry true
+            draw-border-with-background false
 
-              background-effect {
-                  blur true
-              }
+            background-effect {
+              blur true
+            }
           }
 
           hotkey-overlay {
-              skip-at-startup
+            skip-at-startup
           }
 
           xwayland-satellite {
-              path "${lib.getExe pkgs.xwayland-satellite}"
+            path "${lib.getExe pkgs.xwayland-satellite}"
           }
 
           include optional=true "~/.config/niri/toggles/gaps.kdl"
