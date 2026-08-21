@@ -151,40 +151,14 @@
         };
       };
 
-      preferences.binds = [
-        {
-          hotkey = [
-            "Mod"
-            "Space"
-          ];
-          command = [
-            "noctalia"
-            "msg"
-            "panel-toggle"
-            "launcher"
-          ];
-        }
-        {
-          hotkey = [
-            "Mod"
-            "G"
-          ];
-          command = [
-            "noctalia"
-            "msg"
-            "bar-toggle"
-          ];
-        }
-        {
-          hotkey = [
-            "Mod"
-            "Ctrl"
-            "G"
-          ];
-          command = [ (lib.getExe barSmartToggleScript) ];
+      preferences.binds = {
+        "Mod+Space".command = "noctalia msg panel-toggle launcher";
+        "Mod+G".command = "noctalia msg bar-toggle";
+        "Mod+Ctrl+G" = {
+          command = lib.getExe barSmartToggleScript;
           repeat = false;
-        }
-      ];
+        };
+      };
 
       preferences.persist.home.directories = [
         ".config/noctalia"

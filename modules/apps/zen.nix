@@ -16,15 +16,7 @@
         };
       };
 
-      preferences.binds = [
-        {
-          hotkey = [
-            "Mod"
-            "B"
-          ];
-          command = [ "zen-twilight" ];
-        }
-      ];
+      preferences.binds."Mod+B".command = "zen-twilight";
 
       preferences.persist.home.directories = [ ".zen" ];
     };

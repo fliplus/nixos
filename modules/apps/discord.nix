@@ -6,36 +6,11 @@
         equibop
       ];
 
-      preferences.binds = [
-        {
-          hotkey = [
-            "Mod"
-            "D"
-          ];
-          command = [ "equibop" ];
-        }
-        {
-          hotkey = [
-            "Mod"
-            "M"
-          ];
-          command = [
-            "equibop"
-            "--toggle-mic"
-          ];
-        }
-        {
-          hotkey = [
-            "Mod"
-            "Shift"
-            "M"
-          ];
-          command = [
-            "equibop"
-            "--toggle-deafen"
-          ];
-        }
-      ];
+      preferences.binds = {
+        "Mod+D".command = "equibop";
+        "Mod+M".command = "equibop --toggle-mic";
+        "Mod+Shift+M".command = "equibop --toggle-deafen";
+      };
 
       preferences.persist.home.directories = [ ".config/equibop" ];
     };

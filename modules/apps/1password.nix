@@ -7,26 +7,9 @@
         IdentityAgent ~/.1password/agent.sock
     '';
 
-    preferences.auto-start = [
-      [
-        "1password"
-        "--silent"
-      ]
-    ];
+    preferences.auto-start = [ "1password --silent" ];
 
-    preferences.binds = [
-      {
-        hotkey = [
-          "Mod"
-          "Shift"
-          "Space"
-        ];
-        command = [
-          "1password"
-          "--quick-access"
-        ];
-      }
-    ];
+    preferences.binds."Mod+Shift+Space".command = "1password --quick-access";
 
     preferences.persist.home.directories = [ ".config/1Password" ];
   };

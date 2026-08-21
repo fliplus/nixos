@@ -244,15 +244,10 @@
             ]
           )
         )
-        // lib.listToAttrs (
-          map (bind: {
-            name = lib.concatStringsSep "+" bind.hotkey;
-            value = {
-              spawn = bind.command;
-              parameters.repeat = bind.repeat;
-            };
-          }) config.preferences.binds
-        );
+        // lib.mapAttrs (hotkey: bind: {
+          spawn = bind.command;
+          parameters.repeat = bind.repeat;
+        }) config.preferences.binds;
       };
 
       preferences.persist.home.directories = [ ".config/niri" ];

@@ -26,14 +26,6 @@
         };
       };
 
-      preferences.binds = [
-        {
-          hotkey = [
-            "Mod"
-            "T"
-          ];
-          command = [ "ghostty" ];
-        }
-      ];
+      preferences.binds."Mod+T".command = "ghostty";
     };
 }

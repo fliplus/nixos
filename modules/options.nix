@@ -109,16 +109,13 @@
 
         binds = lib.mkOption {
           description = "Configuration for keybinds";
-          type = lib.types.nonEmptyListOf (
+          type = lib.types.attrsOf (
             lib.types.submodule {
               options = {
-                hotkey = lib.mkOption {
-                  description = "Hotkey";
-                  type = lib.types.listOf lib.types.str;
-                };
                 command = lib.mkOption {
                   description = "Command to execute";
-                  type = lib.types.listOf lib.types.str;
+                  type = lib.types.str;
+                  apply = lib.splitString " ";
                 };
                 repeat = lib.mkOption {
                   description = "Whether the command should repeat while the hotkey is held";
@@ -128,11 +125,12 @@
               };
             }
           );
-          default = [ ];
+          default = { };
         };
         auto-start = lib.mkOption {
           description = "Programs to start automatically";
-          type = lib.types.listOf (lib.types.listOf lib.types.str);
+          type = lib.types.listOf lib.types.str;
+          apply = map (lib.splitString " ");
           default = [ ];
         };
       };
