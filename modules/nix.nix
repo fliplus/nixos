@@ -25,5 +25,10 @@
         enable = true;
         flake = "/home/${user}/nixos";
       };
+
+      environment.shellAliases = {
+        nswitch = "nh os switch";
+        nclean = "nh clean all --keep 10 --optimise";
+      };
     };
 }
