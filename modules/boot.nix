@@ -29,7 +29,15 @@
 
         kernelPackages = pkgs.linuxPackages_cachyos;
 
-        kernelParams = lib.forEach config.preferences.monitors (
+        consoleLogLevel = 3;
+        initrd.verbose = false;
+
+        kernelParams = [
+          "quiet"
+          "rd.udev.log_level=3"
+          "rd.systemd.show_status=auto"
+        ]
+        ++ lib.forEach config.preferences.monitors (
           monitor:
           "video=${monitor.name}:${monitor.resolution}@${
             toString (builtins.floor (monitor.refreshRate + 0.5))
