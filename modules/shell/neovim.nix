@@ -91,6 +91,11 @@
 
         statusline.lualine.enable = true;
 
+        clipboard = {
+          enable = true;
+          providers.wl-copy.enable = true;
+        };
+
         binds = {
           whichKey.enable = true;
           cheatsheet.enable = true;
@@ -111,6 +116,33 @@
             key = "<leader>e";
             mode = "n";
             action = ":Neotree toggle<cr>";
+          }
+          {
+            key = "<leader>y";
+            mode = [
+              "n"
+              "v"
+            ];
+            action = "\"+y";
+          }
+          {
+            key = "<leader>p";
+            mode = [
+              "n"
+              "v"
+            ];
+            action = "\"+p";
+          }
+        ];
+
+        autocmds = [
+          {
+            event = [ "TextYankPost" ];
+            command = "wshada";
+          }
+          {
+            event = [ "FocusGained" ];
+            command = "rshada";
           }
         ];
 
