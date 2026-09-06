@@ -38,7 +38,7 @@
             backdrop.enabled = true;
 
             bar.default = {
-              background_opacity = 0.85;
+              background_opacity = 1.0;
               end = [
                 "tray"
                 "nix-monitor"
@@ -71,7 +71,12 @@
               position = if config.preferences.system.isLaptop then "top_right" else "top_left";
             };
 
-            osd.kinds.media = false;
+            osd = {
+              monitors = [ (lib.last config.preferences.monitors).name ];
+              position = if config.preferences.system.isLaptop then "top_right" else "top_left";
+
+              kinds.media = false;
+            };
 
             plugin_settings."noctalia/screen_recorder" = {
               audio_source = "both";
@@ -90,12 +95,11 @@
             ];
 
             shell = {
+              corner_radius_scale = 0.75;
               polkit_agent = true;
               screen_time_enabled = true;
 
               animation.speed = 1.5;
-
-              panel.transparency_mode = "soft";
             };
 
             theme.templates.builtin_ids = [
@@ -105,6 +109,8 @@
               "niri"
               "qt"
             ];
+
+            wallpaper.directory = "/home/${user}/Pictures/Wallpapers";
 
             widget = {
               media.hide_when_no_media = true;

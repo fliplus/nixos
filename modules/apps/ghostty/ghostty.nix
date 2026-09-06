@@ -16,9 +16,8 @@
         };
 
         value = {
-          background-opacity = 0.85;
-          window-padding-x = 8;
-          window-padding-y = 8;
+          window-padding-x = 4;
+          window-padding-y = 4;
           confirm-close-surface = false;
           shell-integration-features = "ssh-terminfo,ssh-env";
 

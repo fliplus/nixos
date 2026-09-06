@@ -78,17 +78,25 @@
           }
 
           layout {
-            gaps 8
+            gaps 4
 
             focus-ring {
               off
             }
 
             border {
-              width 2
+              width 1
             }
 
             background-color "#000000"
+          }
+
+          animations {
+            slowdown 0.75
+
+            workspace-switch {
+              off
+            }
           }
 
           overview {
@@ -96,7 +104,7 @@
           }
 
           window-rule {
-            geometry-corner-radius 12
+            geometry-corner-radius 8
             clip-to-geometry true
             draw-border-with-background false
 
@@ -142,13 +150,13 @@
           };
 
           "Mod+H".action = "focus-column-or-monitor-left";
-          "Mod+J".action = "focus-window-or-workspace-down";
-          "Mod+K".action = "focus-window-or-workspace-up";
+          "Mod+J".action = "focus-window-down";
+          "Mod+K".action = "focus-window-up";
           "Mod+L".action = "focus-column-or-monitor-right";
 
           "Mod+Shift+H".action = "move-column-left-or-to-monitor-left";
-          "Mod+Shift+J".action = "move-window-down-or-to-workspace-down";
-          "Mod+Shift+K".action = "move-window-up-or-to-workspace-up";
+          "Mod+Shift+J".action = "move-window-down";
+          "Mod+Shift+K".action = "move-window-up";
           "Mod+Shift+L".action = "move-column-right-or-to-monitor-right";
 
           "Mod+U".action = "focus-monitor-left";
