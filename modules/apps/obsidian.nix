@@ -17,6 +17,8 @@
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
 
+        unitConfig.ConditionPathExists = "%h/.config/rclone/rclone.conf";
+
         serviceConfig = {
           Type = "oneshot";
 
