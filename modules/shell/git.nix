@@ -16,5 +16,7 @@
       environment.systemPackages = with pkgs; [
         lazygit
       ];
+
+      preferences.persist.home.directories = [ ".config/lazygit" ];
     };
 }
