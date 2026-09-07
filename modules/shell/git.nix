@@ -17,6 +17,6 @@
         lazygit
       ];
 
-      preferences.persist.home.directories = [ ".config/lazygit" ];
+      preferences.persist.home.cache.directories = [ ".local/state/lazygit" ];
     };
 }
