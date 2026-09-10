@@ -1,8 +1,5 @@
-{ config, ... }:
 {
   flake.nixosModules.host-framework = {
-    imports = with config.flake.nixosModules; [ quartus ];
-
     networking.hostId = "c915d58c";
 
     preferences.monitors = [
