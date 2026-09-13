@@ -34,19 +34,6 @@
         };
       };
 
-      fileSystems."/cache".neededForBoot = true;
-      environment.persistence."/cache" = {
-        hideMounts = true;
-
-        directories = persist.root.cache.directories;
-        files = persist.root.cache.files;
-
-        users.${user} = {
-          directories = persist.home.cache.directories;
-          files = persist.home.cache.files;
-        };
-      };
-
       security.sudo.extraConfig = "Defaults lecture=never";
 
       environment.systemPackages = [

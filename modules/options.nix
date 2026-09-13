@@ -28,21 +28,6 @@
               apply = assertNoHomeDirs;
               default = [ ];
             };
-
-            cache = {
-              directories = lib.mkOption {
-                description = "Directories to persist, but not to snapshot";
-                type = lib.types.listOf lib.types.str;
-                apply = assertNoHomeDirs;
-                default = [ ];
-              };
-              files = lib.mkOption {
-                description = "Files to persist, but not to snapshot";
-                type = lib.types.listOf lib.types.str;
-                apply = assertNoHomeDirs;
-                default = [ ];
-              };
-            };
           };
 
           home = {
@@ -55,19 +40,6 @@
               description = "Files to persist in home directory";
               type = lib.types.listOf lib.types.str;
               default = [ ];
-            };
-
-            cache = {
-              directories = lib.mkOption {
-                description = "Directories to persist, but not to snapshot";
-                type = lib.types.listOf lib.types.str;
-                default = [ ];
-              };
-              files = lib.mkOption {
-                description = "Files to persist, but not to snapshot";
-                type = lib.types.listOf lib.types.str;
-                default = [ ];
-              };
             };
           };
         };

@@ -77,12 +77,6 @@
               options."com.sun:auto-snapshot" = "false";
             };
 
-            "local/cache" = {
-              type = "zfs_fs";
-              mountpoint = "/cache";
-              options."com.sun:auto-snapshot" = "false";
-            };
-
             "local/persist" = {
               type = "zfs_fs";
               mountpoint = "/persist";
