@@ -112,11 +112,13 @@
             mode = "n";
             action = ":WhichKey<cr>";
           }
+
           {
             key = "<leader>e";
             mode = "n";
             action = ":Neotree toggle<cr>";
           }
+
           {
             key = "<leader>y";
             mode = [
@@ -132,6 +134,27 @@
               "v"
             ];
             action = "\"+p";
+          }
+
+          {
+            key = "<M-S-j>";
+            mode = "n";
+            action = ":move .+1<CR>==";
+          }
+          {
+            key = "<M-S-k>";
+            mode = "n";
+            action = ":move .-2<CR>==";
+          }
+          {
+            key = "<M-S-j>";
+            mode = "v";
+            action = ":move '>+1<CR>gv=gv";
+          }
+          {
+            key = "<M-S-k>";
+            mode = "v";
+            action = ":move '<-2<CR>gv=gv";
           }
         ];
 
