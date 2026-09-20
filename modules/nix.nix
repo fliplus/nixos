@@ -26,6 +26,8 @@
         flake = "/home/${user}/nixos";
       };
 
+      programs.tack.enable = true;
+
       environment.shellAliases = {
         nswitch = "nh os switch";
         nclean = "nh clean all --keep 10 --optimise";

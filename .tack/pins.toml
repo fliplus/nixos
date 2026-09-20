@@ -1,0 +1,47 @@
+[shorturls]
+gh = "github:{path}"
+
+[all_follow]
+nixpkgs = "nixpkgs"
+
+
+
+[inputs.nixpkgs]
+url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+
+[inputs.flake-parts]
+url = "gh:hercules-ci/flake-parts"
+
+[inputs.disko]
+url = "gh:nix-community/disko"
+
+[inputs.impermanence]
+url = "gh:nix-community/impermanence"
+
+[inputs.chaotic]
+url = "gh:chaotic-cx/nyx/nyxpkgs-unstable"
+
+[inputs.mac-style-plymouth]
+url = "gh:SergioRibera/s4rchiso-plymouth-theme"
+
+[inputs.noctalia]
+url = "gh:noctalia-dev/noctalia"
+
+[inputs.hjem]
+url = "gh:feel-co/hjem"
+
+[inputs.hjem-rum]
+url = "gh:snugnug/hjem-rum"
+
+[inputs.nvf]
+url = "gh:notashelf/nvf"
+
+[inputs.zen-browser]
+url = "gh:0xc000022070/zen-browser-flake"
+
+[inputs.spicetify-nix]
+url = "gh:Gerg-L/spicetify-nix"
+
+[inputs.millennium]
+url = "gh:SteamClientHomebrew/Millennium/next"
+dir = "packages/nix"
