@@ -19,7 +19,7 @@ let
           };
         }
 
-        inputs.disko.nixosModules.disko
+        inputs.disko.nixosModules.default
         inputs.disko.flakeModules.default
 
         inputs.chaotic.nixosModules.default
