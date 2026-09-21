@@ -85,6 +85,14 @@
     "narHash": "sha256-6GDssza3F+ukpUujSuTL50vW5AHaoG+4vjsDgWqRyeQ=",
     "lastModified": 1789854559
   },
+  "sops-nix": {
+    "type": "github",
+    "owner": "Mic92",
+    "repo": "sops-nix",
+    "rev": "7214124c20c1542c90deb54af50e2f53ae02711f",
+    "narHash": "sha256-GKwH3zpy7tartuJMG0Rv/xUsdetG1QLmTVv8UKgJLmA=",
+    "lastModified": 1789890976
+  },
   "spicetify-nix": {
     "type": "github",
     "owner": "Gerg-L",

@@ -14,20 +14,22 @@
       };
 
       config = {
+        sops.secrets.password.neededForUsers = true;
+
         users = {
           mutableUsers = false;
 
           users = {
             root = {
               initialPassword = "password";
-              hashedPasswordFile = "/persist/password";
+              hashedPasswordFile = config.sops.secrets.password.path;
             };
 
             ${user} = {
               isNormalUser = true;
 
               initialPassword = "password";
-              hashedPasswordFile = "/persist/password";
+              hashedPasswordFile = config.sops.secrets.password.path;
 
               extraGroups = [ "wheel" ];
 
