@@ -22,6 +22,8 @@
           commandline -f repaint
         end
         bind \ey yazi_cd
+
+        bind \eg lazygit
       '';
     };
 
