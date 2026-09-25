@@ -23,6 +23,10 @@
         end
         bind \ey yazi_cd
 
+        function lazygit_run
+          lazygit
+          commandline -f repaint
+        end
         bind \eg lazygit
       '';
     };
