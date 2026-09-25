@@ -5,6 +5,8 @@
       inherit (config.preferences.system) user;
     in
     {
+      sops.secrets.nix_conf.owner = user;
+
       nix = {
         package = pkgs.lixPackageSets.latest.lix;
         settings = {
@@ -14,6 +16,9 @@
             "flakes"
           ];
         };
+        extraOptions = ''
+          !include ${config.sops.secrets.nix_conf.path}
+        '';
       };
 
       nixpkgs.config.allowUnfree = true;
@@ -26,7 +31,10 @@
         flake = "/home/${user}/nixos";
       };
 
-      programs.tack.enable = true;
+      programs.tack = {
+        enable = true;
+        nixConfTokens = true;
+      };
 
       environment.shellAliases = {
         nswitch = "nh os switch";
