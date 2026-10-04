@@ -4,11 +4,11 @@
     {
       environment.systemPackages = with pkgs; [
         (prismlauncher.override {
-          jdks = [
-            javaPackages.compiler.temurin-bin.jdk-8
-            javaPackages.compiler.temurin-bin.jdk-17
-            javaPackages.compiler.temurin-bin.jdk-21
-            javaPackages.compiler.temurin-bin.jdk-25
+          jdks = with javaPackages.compiler.temurin-bin; [
+            jdk-8
+            jdk-17
+            jdk-21
+            jdk-25
           ];
 
           additionalLibs = [
@@ -16,6 +16,7 @@
             libxkbcommon
             libxt
             libxinerama
+            fontconfig
           ];
         })
 
