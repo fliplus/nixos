@@ -50,22 +50,19 @@
             enable = true;
             lsp.servers = [ "ruby-lsp" ];
           };
-          html.enable = true;
           typescript.enable = true;
-
-          rust.enable = true;
+          html.enable = true;
+          css.enable = true;
 
           kotlin = {
             enable = true;
             lsp.enable = false;
           };
 
+          clang.enable = true;
           assembly.enable = true;
 
-          qml = {
-            enable = true;
-            lsp.enable = false;
-          };
+          rust.enable = true;
         };
 
         autocomplete.nvim-cmp.enable = true;
