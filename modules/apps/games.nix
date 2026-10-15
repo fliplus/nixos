@@ -28,11 +28,8 @@
         ];
       };
 
-      nixpkgs.config.permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
-
       environment.systemPackages = with pkgs; [
         heroic
-        nexusmods-app-unfree
         gale
         vintagestory
       ];
@@ -49,14 +46,11 @@
           ".config/heroic"
           "Games"
 
-          ".local/share/NexusMods.App"
-
           ".local/share/gale"
           ".local/share/com.kesomannen.gale"
 
-          ".local/share/Terraria"
-
           ".config/VintagestoryData"
+          ".local/share/Terraria"
         ];
       };
     };
