@@ -30,7 +30,6 @@
         kernelPackages = pkgs.linuxPackages_cachyos;
 
         consoleLogLevel = 3;
-        initrd.verbose = false;
 
         kernelParams = [
           "quiet"
