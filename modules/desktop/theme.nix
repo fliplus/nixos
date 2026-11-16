@@ -26,7 +26,6 @@
           {
             settings = {
               "org/gnome/desktop/interface" = {
-                color-scheme = "prefer-dark";
                 cursor-theme = "Breeze_Light";
                 gtk-theme = "adw-gtk3-dark";
                 icon-theme = "Colloid-Dark";
