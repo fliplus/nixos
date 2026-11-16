@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.core =
     { pkgs, ... }:
@@ -20,6 +21,8 @@
           ];
         })
 
+        inputs.bedrock-on-linux.packages.${pkgs.stdenv.hostPlatform.system}.default
+
         waywall
         packwiz
       ];
@@ -27,6 +30,8 @@
       preferences.persist.home.directories = [
         ".local/share/PrismLauncher"
         ".config/waywall"
+        ".config/bedrock-on-linux"
+        ".local/share/bedrock-on-linux"
       ];
     };
 }

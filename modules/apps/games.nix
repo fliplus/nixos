@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.nixosModules.core =
     { pkgs, ... }:
@@ -22,7 +21,7 @@
 
       programs.steam = {
         enable = true;
-        package = inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = pkgs.steamWithMillennium;
         extraCompatPackages = with pkgs; [
           proton-cachyos
         ];

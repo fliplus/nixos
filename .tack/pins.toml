@@ -45,6 +45,5 @@ url = "gh:0xc000022070/zen-browser-flake"
 [inputs.spicetify-nix]
 url = "gh:Gerg-L/spicetify-nix"
 
-[inputs.millennium]
-url = "gh:SteamClientHomebrew/Millennium/next"
-dir = "packages/nix"
+[inputs.bedrock-on-linux]
+url = "gh:Wyze3306/BedrockOnLinux"
