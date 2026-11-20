@@ -24,6 +24,7 @@
       fileSystems."/persist".neededForBoot = true;
       environment.persistence."/persist" = {
         hideMounts = true;
+        allowTrash = true;
 
         directories = persist.root.directories;
         files = persist.root.files;
