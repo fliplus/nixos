@@ -30,6 +30,9 @@ url = "gh:SergioRibera/s4rchiso-plymouth-theme"
 [inputs.noctalia]
 url = "gh:noctalia-dev/noctalia"
 
+[inputs.luciole]
+url = "gh:noctalia-dev/luciole"
+
 [inputs.hjem]
 url = "gh:feel-co/hjem"
 
