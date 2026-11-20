@@ -4,6 +4,12 @@
     { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
+
+      annotateClipboard = pkgs.writeShellScriptBin "noctalia-annotate-clipboard" ''
+        file="$XDG_RUNTIME_DIR/noctalia-annotate-clipboard.png"
+        wl-paste --type image/png > "$file" || exit 1
+        noctalia msg annotate "$file"
+      '';
     in
     {
       imports = [ inputs.noctalia.nixosModules.default ];
@@ -156,6 +162,10 @@
         "Mod+S".command = "noctalia msg screenshot-region";
         "Mod+Shift+S".command = "noctalia msg screenshot-fullscreen";
         "Mod+Z".command = "noctalia msg annotate";
+        "Mod+Shift+E" = {
+          command = lib.getExe annotateClipboard;
+          repeat = false;
+        };
         "Mod+Shift+C" = {
           command = "noctalia msg plugin noctalia/screen_recorder:service all replay-save";
           repeat = false;
