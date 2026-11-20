@@ -6,29 +6,16 @@
       {
         name = "HDMI-A-1";
         resolution = "1920x1080";
-        refreshRate = 239.757;
+        refreshRate = 240;
         x = 0;
         y = 0;
-        workspaces = [
-          1
-          2
-          3
-          4
-          5
-          6
-        ];
       }
       {
         name = "DP-3";
         resolution = "1920x1080";
-        refreshRate = 144.001;
+        refreshRate = 144;
         x = 1920;
         y = 0;
-        workspaces = [
-          7
-          8
-          9
-        ];
       }
     ];
 

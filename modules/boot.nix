@@ -38,9 +38,7 @@
         ]
         ++ lib.forEach config.preferences.monitors (
           monitor:
-          "video=${monitor.name}:${monitor.resolution}@${
-            toString (builtins.floor (monitor.refreshRate + 0.5))
-          }"
+          "video=${monitor.name}:${monitor.resolution}@${toString monitor.refreshRate}"
         );
 
         zfs.package = pkgs.zfs_cachyos;

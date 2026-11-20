@@ -16,6 +16,8 @@
         };
 
         value = {
+          theme = "noctalia";
+
           window-padding-x = 4;
           window-padding-y = 4;
           confirm-close-surface = false;

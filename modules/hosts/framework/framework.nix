@@ -6,20 +6,9 @@
       {
         name = "eDP-1";
         resolution = "2560x1600";
-        refreshRate = 165.000;
+        refreshRate = 165;
         x = 0;
         y = 0;
-        workspaces = [
-          1
-          2
-          3
-          4
-          5
-          6
-          7
-          8
-          9
-        ];
       }
     ];
 

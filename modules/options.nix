@@ -59,7 +59,7 @@
                 };
                 refreshRate = lib.mkOption {
                   description = "Refresh rate of the display";
-                  type = lib.types.float;
+                  type = lib.types.int;
                 };
                 x = lib.mkOption {
                   description = "X position of the display";
@@ -68,10 +68,6 @@
                 y = lib.mkOption {
                   description = "Y position of the display";
                   type = lib.types.int;
-                };
-                workspaces = lib.mkOption {
-                  description = "Workspaces assigned to the display";
-                  type = lib.types.listOf lib.types.int;
                 };
               };
             }
@@ -87,7 +83,6 @@
                 command = lib.mkOption {
                   description = "Command to execute";
                   type = lib.types.str;
-                  apply = lib.splitString " ";
                 };
                 repeat = lib.mkOption {
                   description = "Whether the command should repeat while the hotkey is held";
@@ -102,7 +97,6 @@
         auto-start = lib.mkOption {
           description = "Programs to start automatically";
           type = lib.types.listOf lib.types.str;
-          apply = map (lib.splitString " ");
           default = [ ];
         };
       };

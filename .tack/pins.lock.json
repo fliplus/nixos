@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "chaotic-cx",
     "repo": "nyx",
-    "rev": "d4e84f670506b8679dcd5b2f2e0f07e22f7bea15",
-    "narHash": "sha256-FziDpXALOCZUi5+SwG5oyzEJomaciKm7Ktjxbi7JqEo=",
-    "lastModified": 1795166165
+    "rev": "0908ace844994d974f3441eedf3450a61f7648e8",
+    "narHash": "sha256-r0Y4hnnMklrC60b2JOUa+fYZOiyRSTSW7bfjuW3bKD8=",
+    "lastModified": 1795181807
   },
   "disko": {
     "type": "github",
@@ -39,14 +39,6 @@
     "narHash": "sha256-IjFbnKzAkaG+tiZxwpP5CfTYVNxKKYSMioLynWAaGd0=",
     "lastModified": 1795054265
   },
-  "hjem-rum": {
-    "type": "github",
-    "owner": "snugnug",
-    "repo": "hjem-rum",
-    "rev": "f6193a9a0269044bc3f5665ee29b319def307771",
-    "narHash": "sha256-buVkE9dseq+k0dCEA5gFhbpCO9GRNaziOX7Z9LGu2T0=",
-    "lastModified": 1794150524
-  },
   "impermanence": {
     "type": "github",
     "owner": "nix-community",
@@ -59,9 +51,9 @@
     "type": "github",
     "owner": "noctalia-dev",
     "repo": "luciole",
-    "rev": "15d2772c89abb3d750cfb48d01b1d9fc29f11fa0",
-    "narHash": "sha256-f8D4M+f5Sav4oAxcD+lmgfBq9b7AUxYecKb+4XaKkbk=",
-    "lastModified": 1795176375
+    "rev": "b92ac0456751c8047a0501b3b7d3b44fc9f3a227",
+    "narHash": "sha256-i7m8OE+0WowSQDGEkHTbuqrdlJizQh2TKvhTO/gnFdc=",
+    "lastModified": 1795199690
   },
   "mac-style-plymouth": {
     "type": "github",
@@ -81,9 +73,9 @@
     "type": "github",
     "owner": "noctalia-dev",
     "repo": "noctalia",
-    "rev": "c6bd3ccb0b085ad55dbe3b94d6386226f797daac",
-    "narHash": "sha256-6JVOysl712KxMSemWi5lzw8XkjNhXG9S3quQjf98IEw=",
-    "lastModified": 1795176584
+    "rev": "a5444b9a2c2bc7c1aed5c59298a268e45de14055",
+    "narHash": "sha256-3Bt4df3TM7shQGxQbSDBjYk74oemNvRl4KT3DmLZGF4=",
+    "lastModified": 1795184512
   },
   "nvf": {
     "type": "github",
@@ -108,6 +100,14 @@
     "rev": "cd7d88aca6db91899373d5574bb252547f4c8c2c",
     "narHash": "sha256-An9Qcr31Z+PmF4TlJWY6RkM4yPbBKc2vkyp6NctvMEk=",
     "lastModified": 1794871977
+  },
+  "umbriel": {
+    "type": "github",
+    "owner": "noctalia-dev",
+    "repo": "umbriel",
+    "rev": "adc3fd3a08a4cd2e883618319f2525ce1e6dd80a",
+    "narHash": "sha256-+aldFDt3w2/cbGMF6PPv3Cd4jdepMNQTh9j8Y0FFPDg=",
+    "lastModified": 1795198968
   },
   "zen-browser": {
     "type": "github",

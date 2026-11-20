@@ -33,7 +33,7 @@
 
       services.greetd.settings.initial_session = {
         inherit user;
-        command = "${config.programs.niri.package}/bin/niri-session";
+        command = "${config.programs.umbriel.package}/bin/start-umbriel";
       };
 
       preferences.persist = {

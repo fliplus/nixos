@@ -4,10 +4,6 @@
     { config, pkgs, ... }:
     let
       inherit (config.preferences.system) user;
-
-      barSmartToggleScript = pkgs.writeShellScriptBin "noctalia-bar-smart-toggle" (
-        builtins.readFile ./noctalia-bar-smart-toggle.sh
-      );
     in
     {
       imports = [ inputs.noctalia.nixosModules.default ];
@@ -30,138 +26,138 @@
 
       hjem.extraModules = [ inputs.noctalia.hjemModules.default ];
 
-      hjem.users.${user} = {
-        programs.noctalia = {
-          enable = true;
+      hjem.users.${user}.programs.noctalia = {
+        enable = true;
 
-          settings = {
-            backdrop.enabled = true;
+        settings = {
+          backdrop.enabled = true;
 
-            bar.default = {
-              background_opacity = 1.0;
-              end = [
-                "tray"
-                "nix-monitor"
-                "clipboard"
-                "recorder"
-                "bluetooth"
-                "volume"
-                "control-center"
-              ];
-              margin_ends = 0;
-              padding = 6;
-              radius = 0;
-              start = [
-                "workspaces"
-                "sysmon"
-                "ram"
-                "media"
-              ];
-              thickness = 24;
-            };
-
-            control_center.calendar.show_events_card = false;
-
-            location.auto_locate = true;
-
-            nightlight.enabled = true;
-
-            notification = {
-              monitors = [ (lib.last config.preferences.monitors).name ];
-              position = if config.preferences.system.isLaptop then "top_right" else "top_left";
-            };
-
-            osd = {
-              monitors = [ (lib.last config.preferences.monitors).name ];
-              position = if config.preferences.system.isLaptop then "top_right" else "top_left";
-
-              kinds.media = false;
-            };
-
-            plugin_settings."noctalia/screen_recorder" = {
-              audio_source = "both";
-              copy_to_clipboard = true;
-              replay_duration = 60;
-              replay_enabled = true;
-              restore_portal = true;
-            };
-
-            plugins.enabled = [
-              "noctalia/wallhaven"
-              "noctalia/screen_recorder"
-              "cleboost/jetbrains-provider"
-              "radimous/prismlauncher-instances"
-              "avivbintangaringga/nix-monitor"
+          bar.default = {
+            capsule_group = [
+              {
+                id = "g1";
+                members = [
+                  "clipboard"
+                  "wallhaven"
+                ];
+                accordion = true;
+                accordion_direction = "start";
+              }
             ];
-
-            shell = {
-              corner_radius_scale = 0.75;
-              polkit_agent = true;
-              screen_time_enabled = true;
-
-              animation.speed = 1.5;
-            };
-
-            theme.templates.builtin_ids = [
-              "gtk3"
-              "gtk4"
-              "ghostty"
-              "niri"
-              "qt"
+            end = [
+              "tray"
+              "group:g1"
+              "recorder"
+              "bluetooth"
+              "volume"
+              "input_volume"
+              "control-center"
             ];
+            margin_ends = 0;
+            padding = 6;
+            radius = 0;
+            start = [
+              "workspaces"
+              "sysmon"
+              "ram"
+              "media"
+            ];
+            thickness = 24;
+          };
 
-            wallpaper.directory = "/home/${user}/Pictures/Wallpapers";
+          control_center.calendar.show_events_card = false;
 
-            widget = {
-              media.hide_when_no_media = true;
+          hooks.started = [ "noctalia msg plugin noctalia/screen_recorder:service all replay-start" ];
 
-              "nix-monitor" = {
-                colorize_glyph = false;
-                show_text = false;
-                type = "avivbintangaringga/nix-monitor:nix-monitor";
-              };
+          location.auto_locate = true;
 
-              recorder.type = "noctalia/screen_recorder:recorder";
+          nightlight.enabled = true;
 
-              sysmon.show_value = false;
+          notification = {
+            monitors = [ (lib.last config.preferences.monitors).name ];
+            position = lib.mkIf (!config.preferences.system.isLaptop) "top_left";
+          };
 
-              tray.drawer = true;
+          osd = {
+            monitors = [ (lib.last config.preferences.monitors).name ];
+            position = if config.preferences.system.isLaptop then "top_right" else "top_left";
 
-              volume.show_label = false;
+            kinds.media = false;
+          };
 
-              workspaces = {
-                focused_output_only = true;
-                hide_when_empty = true;
-                label_source = "name";
-                style = "minimal";
-              };
+          plugin_settings."noctalia/screen_recorder" = {
+            audio_source = "both";
+            copy_to_clipboard = true;
+            replay_duration = 60;
+            replay_enabled = true;
+            restore_portal = true;
+          };
+
+          plugins.enabled = [
+            "noctalia/wallhaven"
+            "noctalia/screen_recorder"
+            "cleboost/jetbrains-provider"
+            "radimous/prismlauncher-instances"
+          ];
+
+          shell = {
+            corner_radius_scale = 0.75;
+            polkit_agent = true;
+            screen_time_enabled = true;
+
+            animation.speed = 1.5;
+
+            greeter_sync.auto_sync = true;
+
+            screenshot = {
+              confirm_region = true;
+              directory = "/home/${user}/Pictures/Screenshots";
             };
           };
-        };
 
-        rum.desktops.niri.config = ''
-          include optional=true "/home/${user}/.config/niri/noctalia.kdl"
+          theme.templates.builtin_ids = [
+            "gtk3"
+            "gtk4"
+            "ghostty"
+            "luciole"
+            "qt"
+            "umbriel"
+          ];
 
-          layer-rule {
-              match namespace="^noctalia-backdrop"
-              place-within-backdrop true
-          }
+          wallpaper.directory = "/home/${user}/Pictures/Wallpapers";
 
-          debug {
-              honor-xdg-activation-with-invalid-serial
-          }
-        '';
+          widget = {
+            input_volume.show_label = false;
 
-        xdg.config.files."ghostty/config" = {
-          value.theme = "noctalia";
+            media.hide_when_no_media = true;
+
+            recorder.type = "noctalia/screen_recorder:recorder";
+
+            sysmon.show_value = false;
+
+            tray.drawer = true;
+
+            volume.show_label = false;
+
+            wallhaven.type = "noctalia/wallhaven:wallhaven";
+
+            workspaces = {
+              focused_output_only = true;
+              hide_when_empty = true;
+              style = "minimal";
+            };
+          };
         };
       };
 
       preferences.binds = {
         "Mod+Space".command = "noctalia msg panel-toggle launcher";
         "Mod+G".command = "noctalia msg bar-toggle";
-        "Mod+Ctrl+G" = {
-          command = lib.getExe barSmartToggleScript;
+        "Mod+S".command = "noctalia msg screenshot-region";
+        "Mod+Shift+S".command = "noctalia msg screenshot-fullscreen";
+        "Mod+Z".command = "noctalia msg annotate";
+        "Mod+Shift+C" = {
+          command = "noctalia msg plugin noctalia/screen_recorder:service all replay-save";
           repeat = false;
         };
       };
