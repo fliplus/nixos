@@ -23,7 +23,7 @@
         enable = true;
         package = pkgs.steamWithMillennium;
         extraCompatPackages = with pkgs; [
-          proton-cachyos
+          proton-cachyos-bin_edge
         ];
       };
 
