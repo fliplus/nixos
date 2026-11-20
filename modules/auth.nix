@@ -1,33 +1,43 @@
 {
   flake.nixosModules.core =
-    { config, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       inherit (config.preferences.system) user;
     in
     {
       services.openssh.enable = true;
 
-      services.displayManager = {
-        ly = {
-          enable = true;
+      services.displayManager.noctalia-greeter = {
+        enable = true;
 
-          settings = {
-            bigclock = "en";
-            save = true;
-            vi_default_mode = "insert";
-            vi_mode = true;
-          };
+        passwordlessSyncUsers = [ user ];
+
+        cursorTheme = {
+          package = pkgs.kdePackages.breeze;
+          name = "Breeze_Light";
         };
 
-        autoLogin = {
-          enable = true;
-          inherit user;
+        settings = {
+          cursor.size = 24;
+
+          output.refresh_rate = lib.concatMapStringsSep "; " (
+            m: "${m.name}:${toString m.refreshRate}"
+          ) config.preferences.monitors;
         };
-        sessionData.autologinSession = "niri";
+      };
+
+      services.greetd.settings.initial_session = {
+        inherit user;
+        command = "${config.programs.niri.package}/bin/niri-session";
       };
 
       preferences.persist = {
-        root.files = [ "/etc/ly/save.txt" ];
+        root.directories = [ "/var/lib/noctalia-greeter" ];
 
         home.directories = [ ".ssh" ];
       };
