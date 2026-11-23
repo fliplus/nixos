@@ -7,6 +7,7 @@
         name = "eDP-1";
         resolution = "2560x1600";
         refreshRate = 165;
+        scale = 1.5;
         x = 0;
         y = 0;
       }

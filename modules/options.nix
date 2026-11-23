@@ -61,6 +61,11 @@
                   description = "Refresh rate of the display";
                   type = lib.types.int;
                 };
+                scale = lib.mkOption {
+                  description = "Scale factor of the display";
+                  type = lib.types.float;
+                  default = 1.0;
+                };
                 x = lib.mkOption {
                   description = "X position of the display";
                   type = lib.types.int;

@@ -73,7 +73,9 @@
 
           control_center.calendar.show_events_card = false;
 
-          hooks.started = [ "noctalia msg plugin noctalia/screen_recorder:service all replay-start" ];
+          hooks = lib.mkIf (!config.preferences.system.isLaptop) {
+            started = [ "noctalia msg plugin noctalia/screen_recorder:service all replay-start" ];
+          };
 
           location.auto_locate = true;
 

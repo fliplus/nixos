@@ -38,6 +38,7 @@
               inherit (monitor) name;
               value = {
                 mode = "${monitor.resolution}@${toString monitor.refreshRate}";
+                inherit (monitor) scale;
                 position = [
                   monitor.x
                   monitor.y
@@ -51,6 +52,8 @@
           );
 
           input.keyboard.options = "caps:super, compose:lwin";
+
+          input.touchpad.natural_scroll = true;
 
           appearance.border_width = 1;
 
