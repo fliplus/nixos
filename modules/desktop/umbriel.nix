@@ -61,6 +61,14 @@
 
           window_rule = [
             {
+              blur = true;
+            }
+            {
+              match.layout = "stacking";
+              title_bar = "on";
+            }
+
+            {
               match.app_id = "^dev.noctalia.Noctalia$";
               default_floating = true;
               default_floating_size_px = {
@@ -134,15 +142,18 @@
             "Mod+Alt+H" = "column-focus-tab-previous";
             "Mod+Alt+L" = "column-focus-tab-next";
 
+            "Mod+Comma" = "window-consume-or-expel-left";
+            "Mod+Period" = "window-consume-or-expel-right";
+            "Mod+Shift+Comma" = "window-consume-from-left";
+            "Mod+Shift+Period" = "window-consume-from-right";
+
             "Mod+U" = "output-focus-left";
             "Mod+I" = "output-focus-right";
             "Mod+Shift+U" = "column-move-to-output-left";
             "Mod+Shift+I" = "column-move-to-output-right";
 
-            "Mod+Comma" = "window-consume-or-expel-left";
-            "Mod+Period" = "window-consume-or-expel-right";
-            "Mod+Shift+Comma" = "window-consume-from-left";
-            "Mod+Shift+Period" = "window-consume-from-right";
+            "Alt+Tab" = "spawn noctalia msg window-switcher hold";
+            "Alt+Shift+Tab" = "spawn noctalia msg window-switcher hold reverse";
 
             "Mod+C" = "window-center";
 
@@ -159,8 +170,8 @@
 
             "Mod+Minus" = "window-modify-primary-extent -0.02";
             "Mod+Equal" = "window-modify-primary-extent +0.02";
-            "Mod+Ctrl+Minus" = "window-modify-secondary-extent -0.02";
-            "Mod+Ctrl+Equal" = "window-modify-secondary-extent +0.02";
+            "Mod+Shift+Minus" = "window-modify-secondary-extent -0.02";
+            "Mod+Shift+Equal" = "window-modify-secondary-extent +0.02";
 
             "Mod+W" = "column-toggle-tabbed";
 
