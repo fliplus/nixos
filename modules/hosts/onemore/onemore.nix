@@ -26,5 +26,23 @@
       MatchUdevType=mouse
       ModelBouncingKeys=1
     '';
+
+    fileSystems."/mnt/Games" = {
+      device = "/dev/disk/by-label/Games";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "x-gvfs-show"
+      ];
+    };
+
+    fileSystems."/mnt/Storage" = {
+      device = "/dev/disk/by-label/Storage";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "x-gvfs-show"
+      ];
+    };
   };
 }
