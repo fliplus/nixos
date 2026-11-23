@@ -28,6 +28,7 @@ let
 
         config.flake.nixosModules.core
       ]
+      ++ lib.optionals (!isLaptop) [ config.flake.nixosModules.desktop ]
       ++ lib.optionals isLaptop [ config.flake.nixosModules.laptop ];
     };
 in
