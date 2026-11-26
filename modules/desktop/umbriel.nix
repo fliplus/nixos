@@ -28,6 +28,11 @@
             show_cheatsheet = false;
           };
 
+          environment = {
+            ELECTRON_OZONE_PLATFORM_HINT = "auto";
+            SDL_VIDEODRIVER = "wayland";
+          };
+
           input.focus = {
             follows_mouse = "sloppy";
             follows_mouse_max_scroll = 0.5;
@@ -120,7 +125,7 @@
               action = "window-close";
               repeat = false;
             };
-            "Mod+Escape" = "session-quit";
+            "Mod+Shift+Escape" = "session-quit";
             "Mod+Slash" = "cheatsheet-toggle";
 
             "Mod+O" = "overview-toggle";
